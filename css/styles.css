@@ -1,0 +1,43 @@
+body {
+    color: rgb(0, 0, 53);
+    background-color: #fff7da;
+    font-family: Montserrat Alternates, regular;
+}
+
+ul {
+    list-style-type: none;
+}
+
+ul .contacts-nav a {
+    text-decoration: none;
+}
+
+.boutique_title {
+    text-align: center;
+    letter-spacing: 2px;
+}
+
+.description {
+    line-height: 1.5;
+}
+
+a {
+    text-decoration: none;
+}
+
+.social-links link {
+    color: bisque;
+}
+
+.social-links .link:hover,
+.social-links .link:focus {
+    color: rgb(255, 145, 0);
+}
+
+.social-links .link:active {
+    color: rgb(255, 72, 0);
+}
+
+.type-wine li {
+    /* */
+}
