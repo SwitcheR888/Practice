@@ -1,3 +1,11 @@
+body {
+    background-color: silver;
+}
+
+a {
+    color: #002fff;
+}
+
 .header {}
 
 .logo {}
@@ -6,20 +14,10 @@
 
 .nav-list {}
 
-.social-links {}
+.nav-links {}
 
-.link {}
-
-.hero {}
+.wine-list {}
 
 .boutique-title {}
-
-.hero-description {}
-
-.wine-types {}
-
-.wine-category {}
-
-.country-list {}
 
 .footer {}
