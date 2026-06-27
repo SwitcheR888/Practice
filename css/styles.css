@@ -1,43 +1,25 @@
-body {
-    color: rgb(0, 0, 53);
-    background-color: #fff7da;
-    font-family: Montserrat Alternates, regular;
-}
+.header {}
 
-ul {
-    list-style-type: none;
-}
+.logo {}
 
-ul .contacts-nav a {
-    text-decoration: none;
-}
+.header-nav {}
 
-.boutique_title {
-    text-align: center;
-    letter-spacing: 2px;
-}
+.nav-list {}
 
-.description {
-    line-height: 1.5;
-}
+.social-links {}
 
-a {
-    text-decoration: none;
-}
+.link {}
 
-.social-links link {
-    color: bisque;
-}
+.hero {}
 
-.social-links .link:hover,
-.social-links .link:focus {
-    color: rgb(255, 145, 0);
-}
+.boutique-title {}
 
-.social-links .link:active {
-    color: rgb(255, 72, 0);
-}
+.hero-description {}
 
-.type-wine li {
-    /* */
-}
+.wine-types {}
+
+.wine-category {}
+
+.country-list {}
+
+.footer {}
