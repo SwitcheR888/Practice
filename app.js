@@ -1,8 +1,13 @@
 "use strict";
 
-const cafeName = "Sunny Coffee";
-let orderStatus = "new";
-console.log(cafeName);
-console.log(orderStatus);
-orderStatus = "done";
-console.log(orderStatus);
+const gptName = "G";
+const position = "My FullStack mentor";
+const target = "teach me";
+const respect = "trust him";
+
+const message = 
+position + " - " + 
+gptName + ", help me & " + 
+target + ". Because I " + 
+respect + ".";
+console.log(message);
