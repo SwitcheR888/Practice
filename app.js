@@ -1,3 +1,5 @@
+"use strict";
+
 const cafeName = "Sunny Coffee";
 let orderStatus = "new";
 console.log(cafeName);
