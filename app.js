@@ -1,13 +1,7 @@
-"use strict";
+'use strict';
+const nameMentor = 'G';
+const service = 'teach me';
+const conditions = 'agreement';
 
-const gptName = "G";
-const position = "My FullStack mentor";
-const target = "teach me";
-const respect = "trust him";
-
-const message = 
-position + " - " + 
-gptName + ", help me & " + 
-target + ". Because I " + 
-respect + ".";
+const message = `${nameMentor} is my teacher. His duties are ${service} HTML, CSS, JavaScript, etc. We have ${conditions} with him.`;
 console.log(message);
