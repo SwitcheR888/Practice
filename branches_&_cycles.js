@@ -195,9 +195,239 @@ console.log(getSubscriptionPrice('premium')); // Invalid subscription type!*/
 
 //!--- БЛОЧНАЯ ОБЛАСТЬ ВИДИМОСТИ (scope) — это место в коде, внутри которого переменная существует и доступна для обращения ---
 
-if (5 > 3) {
+/*if (5 > 3) {
   const message = 'Order accepted'; //! Переменная, объявленная через let или const внутри блока {}, доступна внутри этого блока, но недоступна снаружи.
   console.log(message);
 }
 
-console.log(message); //! Здесь переменная не читается интерпретатором, т.к. она находится за пределами блока
+console.log(message);*/ //! Здесь переменная не читается интерпретатором, т.к. она находится за пределами блока
+
+//!------- ПРЕОБРАЗОВАНИЕ ТИПОВ (ЛОГИЧЕСКОЕ) -------
+
+//! --- ВСЕГДА false!!! ---
+/*console.log(Boolean(0));
+console.log(Boolean(false));
+console.log(Boolean(''));
+console.log(Boolean(null));
+console.log(Boolean(undefined));
+console.log(Boolean(NaN));
+//! --- true ---
+console.log(Boolean('false')); //! любой непустой рядок для интерпретатора = true
+console.log(Boolean('hello')); //! рядок = true
+console.log(Boolean(42));*/ //! все цифры кроме 0 = true
+
+//! --- ПРИМЕР ПРЕОБРАЗОВАНИЯ ТИПОВ ---
+/*const discount = 0;
+
+if (discount) {
+  //! Интерпретатор подставляет значение 0. После чего, приводит в булевое значение (т.е. true или false)
+  console.log('Discount applied'); //! Если вместо 0 будет стоять любое другое число/цифра, это будет значение true и выведится это сообщение "Discount applied"
+} else {
+  console.log('No discount');
+} */
+
+//! --------- ПРИМЕР ПРЕОБРАЗОВАНИЯ ТИПОВ ---------
+//! --------- ОПЕРАТОР && (ищет первое falsy значение)---------
+
+/*const age = 20;
+
+console.log(age > 10 && age < 30); //! && - оператор. <> - операнды
+*/
+
+/*
+ * У Sunny Coffee безкоштовна доставка лише для постійних клієнтів
+ * з великим замовленням.
+ * 1. Оголоси функцію getDeliveryPrice з двома параметрами:
+ *    isMember (чи постійний клієнт) і orderSum (сума замовлення).
+ * 2. За допомогою if...else поверни вартість доставки:
+ *    - якщо клієнт постійний І сума замовлення не менша за 500 —
+ *      доставка безкоштовна, поверни 0;
+ *    - інакше — поверни 30.
+ *    Обидві умови поєднай через &&.
+ * Виклики функції вже додані нижче — після написання перевір результат у консолі.
+
+function getDeliveryPrice(isMember, orderSum) {
+  if (isMember && orderSum >= 500) {
+    return 0;
+  } else {
+    return 30;
+  }
+}
+
+console.log(getDeliveryPrice(true, 600)); // 0
+console.log(getDeliveryPrice(true, 300)); // 30
+console.log(getDeliveryPrice(false, 600)); // 30
+*/
+//! && Ищет ПЕРВОЕ falsy значение. Если нашёл → возвращает его. Если не нашёл → возвращает последнее значение.
+
+//! --------- ОПЕРАТОР "ИЛИ" || (ищет первое truthy значение) ---------
+/*const age = 7;
+console.log(age < 12 || age > 65); //! 7 < 12 = true
+*/
+
+/*
+ * У клініці SmileCare огляд безкоштовний для дітей і пенсіонерів.
+ * 1. Оголоси функцію getCheckupPrice з параметром age (вік пацієнта).
+ * 2. За допомогою if...else поверни вартість огляду:
+ *    - якщо вік менший за 18 АБО більший за 65 — огляд безкоштовний, поверни 0;
+ *    - інакше — поверни 300.
+ *    Обидві умови поєднай через ||.
+ * Виклики функції вже додані нижче — після написання перевір результат у консолі.
+
+function getCheckupPrice(age) {
+  if (age < 18 || age > 65) {
+    return 0;
+  } else {
+    return 300;
+  }
+}
+
+console.log(getCheckupPrice(12)); // 0 //! 12 < 18 = true; 12 > 65 = false (Останется true, т.к. верное хотя бы одно условие (первое))
+console.log(getCheckupPrice(70)); // 0 //! 70 < 18 = false; 70 > 65 = true (Останется true, т.к. верное хотя бы одно условие (второе))
+console.log(getCheckupPrice(35)); // 300 */ //! 35 < 18 = false; 35 > 65 = false (Ни одно из условий не выполнено. Остается false)
+//! || Ищет ПЕРВОЕ truthy значение. Если нашёл → возвращает его. Если не нашёл → возвращает последнее значение.
+
+//! --------- ОПЕРАТОР ! (НЕ...) ---------
+/*
+console.log(!true); // false
+console.log(!false); // true
+console.log(!0); // true
+console.log(!'Poly'); // false
+*/
+/*
+const isBlocked = false; //! Пользователь заблокирован - нет
+if (!isBlocked) { //! Оператор ! делает инверсию (т.е. меняет на противоположное значение) !Заблокирован = true (да, заблокирован)
+  console.log('Can chat'); //! В консоле выводится это сообщение.
+} else {
+  console.log('Blocked');
+}
+*/
+/*
+ * У Sunny Coffee пропозиція «Замовити ще» показується, лише коли
+ * кав'ярня відкрита і це не перше замовлення клієнта.
+ * 1. Оголоси функцію getReorderMessage з двома параметрами:
+ *    isOpen (чи відкрита кав'ярня) і isFirstOrder (чи перше замовлення).
+ * 2. За допомогою if...else поверни повідомлення:
+ *    - якщо кав'ярня відкрита І замовлення НЕ перше — поверни "Order again?";
+ *    - інакше — поверни "No offer".
+ *    Для умови «не перше» використай оператор !.
+ * Виклики функції вже додані нижче — після написання перевір результат у консолі.
+
+function getReorderMessage(isOpen, isFirstOrder) {
+  if (isOpen && !isFirstOrder) { //! НЕ первый заказ = ! (не) + условие isFirstOrder (первый заказ)
+    return 'Order again?';
+  } else {
+    return 'No offer';
+  }
+}
+
+console.log(getReorderMessage(true, false)); // Order again?
+console.log(getReorderMessage(true, true)); // No offer
+console.log(getReorderMessage(false, false)); // No offer
+*/
+
+//! --------- СВОЙСТВА И МЕТОДЫ ---------
+//! СВОЙСТВО length
+//const message = 'JavaScript is awesome';
+
+//console.log(message.length); //! 21 символ включая пробелы.
+
+//! МЕТОД toUpperCase()
+//const message = 'JavaScript is awesome';
+
+//console.log(message.toUpperCase()); //! toUpperCase() - строчный метод
+
+//! -------- МЕТОДЫ toLowerCase() и toUpperCase() --------
+/*
+const brand = 'sAmSuNg';
+
+console.log('brand', brand);
+console.log(brand.toLowerCase()); //! все строчные = samsung
+
+console.log('brand', brand);
+console.log(brand.toUpperCase()); //! ВСЕ ПРОПИСНЫЕ = SAMSUNG
+*/
+
+/*
+ * Функція приводить рядок до потрібного регістру.
+ * 1. Оголоси функцію normalizeInput з двома параметрами:
+ *    input (рядок для перетворення) і to (режим: "upper" або "lower").
+ * 2. Поверни з функції:
+ *    - якщо to дорівнює "upper" — рядок input у верхньому регістрі;
+ *    - інакше — рядок input у нижньому регістрі.
+ * Виклики функції вже додані нижче — після написання перевір результат у консолі.
+ */
+//! ВАРИАНТ № 1
+/*function normalizeInput(input, to) {
+   if (to === 'upper') {
+    return input.toUpperCase();
+  } else {
+    return input.toLowerCase();
+  }
+} 
+console.log(normalizeInput('Big SALE', 'lower')); // big sale
+console.log(normalizeInput('Big SALE', 'upper')); // BIG SALE
+console.log(normalizeInput('Hello World', 'upper')); // HELLO WORLD 
+*/
+
+//! ВАРИАНТ № 2 (ТЕРНАРНЫЙ ОПЕРАТОР)
+/*function normalizeInput(input, to) {
+  const result = to === 'upper' ? input.toUpperCase() : input.toLowerCase();
+  return result;
+}
+
+console.log(normalizeInput('Big SALE', 'lower')); // big sale
+console.log(normalizeInput('Big SALE', 'upper')); // BIG SALE
+console.log(normalizeInput('Hello World', 'upper')); // HELLO WORLD
+*/
+
+//! -------- МЕТОД INCLUDES() --------
+//const username = 'Kyryl F-Sky';
+
+//console.log(username.includes('Kyryl')); // true //! Искать можно от 1 буквы до целых слов. Обязательно сохраняя свойство регистра
+//console.log(username.includes('Kyryl')); // false //! KyrYl в поиске не отобразится.
+
+//! --- МЕТОД INCLUDES() 1 ---
+/* const message = 'Please buy our stuff!';
+
+if (message.includes('buy')) {
+  console.log('Spam');
+} else {
+  console.log('OK');
+} */
+
+//! --- МЕТОД INCLUDES() 2 ---
+/*const message = 'Please buy our stuff!';
+const hasSpam = message.includes('buy');
+
+console.log(hasSpam); //! Boolean значение
+
+if (hasSpam) {
+  console.log('Spam');
+} else {
+  console.log('Ok');
+}
+*/
+
+//! --- ПРАКТИКА INCLUDES() ---
+/*
+ * Функція перевіряє, чи міститься ім'я в повному імені.
+ * Регістр введених рядків наперед не відомий, тому порівнювати
+ * потрібно без огляду на регістр.
+ * 1. Оголоси функцію containsName з двома параметрами:
+ *    fullName (повне ім'я) і firstName (ім'я для пошуку).
+ * 2. Зведи обидва рядки до нижнього регістру через toLowerCase().
+ * 3. Поверни результат перевірки: чи містить fullName підрядок firstName
+ *    (використай includes()).
+ * Виклики функції вже додані нижче — після написання перевір результат у консолі.
+
+function containsName(fullName, firstName) {
+  const lowerFullName = fullName.toLowerCase();
+  const lowerFirstName = firstName.toLowerCase();
+
+  return lowerFullName.includes(lowerFirstName);
+}
+
+console.log(containsName('Jason Neis', 'Jason')); // true
+console.log(containsName('Jason Neis', 'jAsOn')); // true
+console.log(containsName('Jason Neis', 'Jacob')); // false */
