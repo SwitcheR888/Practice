@@ -456,7 +456,7 @@ console.log(checkFileExtension('styles.css', '.js')); // File extension does not
 console.log(checkFileExtension('app.js', '.js')); // File extension matches
 */
 
-//! --- МЕТОД slice() ---
+//! --------- МЕТОД slice() ---------
 //! Пример где применяется slice(): есть список из 100 элементов, но на странице нужно показать только первые 10: const firstTen = items.slice(0, 10);
 /*const fullName = 'Kyryl Fedorovskyi';
 console.log(fullName[0]); //! fullName[0] - покажет только 1 символ!
@@ -483,3 +483,42 @@ function getBirthYearMessage(birthDate) {
 console.log(getBirthYearMessage('2024-03-15')); // You were born in 2024
 console.log(getBirthYearMessage('1998-12-01')); // You were born in 1998
 console.log(getBirthYearMessage('2010-07-20')); // You were born in 2010*/
+
+//! --------- ЦИКЛ while ---------
+/*let count = 0;
+while (count < 5) {
+  //! while - будет считать каждый раз + 1 пока не станет = 5. Тогда, счет остановится
+  console.log(count);
+  count = count + 1;
+}
+//! while - цикл; count < 5 - условие; {тело цикла};
+//! В теле while всегда должно находится условие, которое после цикла станет false, иначе цикл будет беконечным.
+console.log('after');*/
+
+/*
+ * Функція рахує суму всіх цілих чисел від 1 до заданого числа включно.
+ * Наприклад, для 3 це 1 + 2 + 3 = 6.
+ * 1. Оголоси функцію sumUpTo з параметром number.
+ * 2. Створи змінну count зі значенням 1 (поточне число)
+ *    і змінну total зі значенням 0 (сума).
+ * 3. За допомогою while, поки count не більше за number:
+ *    - додай count до total;
+ *    - збільш count на 1.
+ * 4. Поверни total.
+ * Виклики функції вже додані нижче — після написання перевір результат у консолі.
+
+function sumUpTo(number) {
+  let count = 1;
+  let total = 0;
+
+  while (count <= number) {
+    total += count;
+    count += 1;
+  }
+  return total;
+}
+
+console.log(sumUpTo(3)); // 6
+console.log(sumUpTo(5)); // 15
+console.log(sumUpTo(0)); // 0
+*/
