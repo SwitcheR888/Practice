@@ -522,3 +522,43 @@ console.log(sumUpTo(3)); // 6
 console.log(sumUpTo(5)); // 15
 console.log(sumUpTo(0)); // 0
 */
+
+//! --------- ЦИКЛ for ---------
+//! ПРИМЕР № 1 --- от 0 до 4
+//! В () оглашается начальное значение (переменная и инициализация). count становится 0.
+//for (let count = 0; count < 5; count += 1) { //! После первой; условие 0 < 5.  А после второй; пост выражение (изменение счётчика)
+//  console.log(count);
+//}
+
+/*
+ * У програмі лояльності Sunny Coffee за 1-ше замовлення клієнт отримує
+ * 1 бал, за 2-ге — 2 бали, за 3-тє — 3, і так далі.
+ * 1. Оголоси функцію getLoyaltyPoints з параметром orders
+ *    (кількість замовлень клієнта).
+ * 2. Створи змінну total зі значенням 0 (сума балів).
+ * 3. Циклом for пройди номери замовлень від 1 до orders включно
+ *    і додай кожен номер до total.
+ * 4. Поверни total.
+ * Виклики функції вже додані нижче — після написання перевір результат у консолі.
+
+function getLoyaltyPoints(orders) {
+  let total = 0;
+  for (let i = 1; i <= orders; i += 1) {
+    total += i;
+  }
+  return total;
+}
+
+console.log(getLoyaltyPoints(3)); // 6
+console.log(getLoyaltyPoints(5)); // 15
+console.log(getLoyaltyPoints(0)); // 0 */
+
+//! --------- ОПЕРАТОР break ---------
+//! break используется тогда, когда цикл не должен выполнять итерации.
+for (let i = 1; i <= 10; i += 1) {
+  console.log(i);
+  if (i === 8) {
+    break;
+  }
+}
+console.log('Done');
