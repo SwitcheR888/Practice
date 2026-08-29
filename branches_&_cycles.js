@@ -554,11 +554,120 @@ console.log(getLoyaltyPoints(5)); // 15
 console.log(getLoyaltyPoints(0)); // 0 */
 
 //! --------- ОПЕРАТОР break ---------
-//! break используется тогда, когда цикл не должен выполнять итерации.
-for (let i = 1; i <= 10; i += 1) {
+//! break используется тогда, когда (цикл не должен выполнять итерации) нужно завершить цикл.
+/*for (let i = 1; i <= 10; i += 1) {
   console.log(i);
   if (i === 8) {
     break;
   }
 }
-console.log('Done');
+console.log('Done');*/
+
+/*
+ * Функція шукає перше число в проміжку від start до end,
+ * яке ділиться на 5 без залишку.
+ * 1. Оголоси функцію findMultiple з параметрами start і end.
+ * 2. Створи змінну number — сюди запишемо результат.
+ * 3. Циклом for пройди числа від start до end. Якщо чергове число
+ *    ділиться на 5 без залишку (i % 5 === 0) — збережи його в number
+ *    і перерви цикл оператором break.
+ * 4. Поверни number.
+ * Виклики функції вже додані нижче — після написання перевір результат у консолі.
+
+function findMultiple(start, end) {
+  let number;
+
+  for (let i = start; i <= end; i += 1) {
+    if (i % 5 === 0) {
+      number = i;
+      break;
+    }
+  }
+  return number;
+}
+
+console.log(findMultiple(6, 17)); // 10
+console.log(findMultiple(17, 25)); // 20
+console.log(findMultiple(2, 11)); // 5 */
+
+//! --------- ОПЕРАТОР break (part II) ---------
+
+/*function search(target) {
+  for (let i = 1; i <= 10; i += 1) {
+    if (i === target) {
+      console.log('Stopped at:', i);
+      break; //! break останавливает только цикл, но не функцию целиком!!!
+    }
+  }
+  console.log('After the loop'); //! Интерпретатор выведет эту строку (т.к. он находится внутри функции)
+}
+search(3);*/
+
+//! -- return --
+/*function search(target) {
+  for (let i = 1; i <= 10; i += 1) {
+    if (i === target) {
+      console.log('Inside loop', i);
+      return i; //! return останавливает цикл и всю функцию
+    }
+  }
+  console.log('After the loop'); //! После возврата return интерпретатор уже не выведет эту строку
+}
+const result = search(3);
+console.log('result', result);*/
+
+/*
+ * Функція шукає перше число в діапазоні від start до end включно,
+ * яке ділиться на divisor без остачі. Оператор break не використовуй.
+ * 1. Оголоси функцію findDivisible з параметрами start, end і divisor.
+ * 2. Циклом for пройди числа від start до end включно.
+ * 3. Якщо чергове число ділиться на divisor без остачі (i % divisor === 0),
+ *    одразу поверни його через return — це завершить і цикл, і функцію.
+ * Виклики функції вже додані нижче — після написання перевір результат у консолі.
+
+//let number;
+function findDivisible(start, end, divisor) {
+  for (let i = start; i <= end; i += 1) {
+    if (i % divisor === 0) {
+      //      number = i;
+      //      break;
+      return i;
+    }
+  }
+  //  return number;
+}
+
+console.log(findDivisible(2, 6, 5)); // 5
+console.log(findDivisible(8, 17, 3)); // 9
+console.log(findDivisible(16, 35, 7)); // 21*/
+
+//! ============ ЗАДАЧА: РАСШИРЕНИЕ ФАЙЛА ============
+
+/*
+ * Функція змінює розширення файлу.
+ * fileName — ім'я файлу з розширенням (наприклад "app.js"),
+ * ext — потрібне розширення (наприклад ".css").
+ * 1. Оголоси функцію changeFileExtension з параметрами fileName і ext.
+ * 2. Якщо fileName уже закінчується на ext — поверни fileName без змін.
+ * 3. Інакше заміни розширення на ext:
+ *    - циклом for знайди позицію крапки (символ ".") у fileName;
+ *    - через slice візьми частину рядка до крапки — це ім'я без розширення;
+ *    - додай до нього ext і поверни результат.
+ * Виклики функції вже додані нижче — після написання перевір результат у консолі.
+ */
+
+function changeFileExtension(fileName, ext) {
+  if (fileName.endsWith(ext)) {
+    return fileName;
+  }
+  for (let i = 0; i < fileName.length; i += 1) {
+    if (fileName[i] === '.') {
+      const name = fileName.slice(0, i);
+      return `${name}${ext}`;
+    }
+  }
+}
+
+console.log(changeFileExtension('app.css', '.js')); // app.js
+console.log(changeFileExtension('styles.css', '.css')); // styles.css
+console.log(changeFileExtension('index.js', '.html')); // index.html
