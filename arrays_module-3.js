@@ -144,6 +144,121 @@ if (fruits.length === 0) {
   console.log('Массив пустой'); //! Массив пустой
 }
 */
-//! ====== ЗАПОМНИТЬ!!! ======
+//! **** ЗАПОМНИТЬ!!! ****
 //! Пустой массив [] = truthy
 //! [].length = 0, поэтому пустоту массива проверяем через length.
+
+/*
+ * SmileCare тримає чергу записів на сьогодні — масив імен пацієнтів.
+ * Функція checkQueue(queue) перевіряє її через довжину масиву.
+ * 1. Оголоси функцію checkQueue(queue).
+ * 2. Якщо queue.length === 0 — поверни 'Записів немає'.
+ * 3. Інакше — поверни рядок 'Записів у черзі: N', де N — кількість записів.
+
+function checkQueue(queue) {
+  if (queue.length === 0) {
+    return 'Записів немає';
+  } else {
+    return `Записів у черзі: ${queue.length}`;
+  }
+}
+
+console.log(checkQueue(['Alex', 'Sam', 'Kim'])); // Записів у черзі: 3
+console.log(checkQueue(['Max'])); // Записів у черзі: 1
+console.log(checkQueue([])); // Записів немає
+console.log(checkQueue(['Alex', 'Sam', 'Kim', 'Max', 'Lee'])); // Записів у черзі: 5
+*/
+
+//! ====== МЕТОД join() ======
+//! ** Метод массива, который объединяет все элементы массива в одну строку **
+/*
+ * Sunny Coffee показує позиції замовлення одним рядком у чеку,
+ * а в дужках — їхню кількість.
+ * Функція buildReceiptLine(order) приймає масив назв напоїв.
+ * 1. Оголоси функцію buildReceiptLine(order).
+ * 2. З'єднай назви напоїв у рядок методом join() з роздільником ', '.
+ * 3. Поверни рядок виду `Latte, Espresso, Cappuccino (3)` — склеєні напої,
+ *    а в дужках кількість позицій (order.length).
+
+function buildReceiptLine(order) {
+  //console.log(order.join(', ')); //! Склеили по условию через ,
+  const line = order.join(', ');
+  return `${line} (${order.length})`;
+}
+
+console.log(buildReceiptLine(['Latte', 'Espresso', 'Cappuccino'])); // Latte, Espresso, Cappuccino (3)
+console.log(buildReceiptLine(['Americano', 'Raf'])); // Americano, Raf (2)
+console.log(buildReceiptLine(['Mocha'])); // Mocha (1)
+*/
+
+//! ====== МЕТОД split() ======
+//! ** Метод строки, который разбивает строку на части и превращает её в массив **
+/*
+ * Сервіс гравіювання рахує ціну за кількістю слів у написі.
+ * 1. Оголоси функцію getEngravingPrice(message, pricePerWord):
+ *    message — напис зі слів, розділених пробілами; pricePerWord — ціна одного слова.
+ * 2. Розбий message на слова методом split() (роздільник — пробіл).
+ * 3. Порахуй кількість слів через length і помнож на pricePerWord.
+ * 4. Поверни отриману суму.
+
+function getEngravingPrice(message, pricePerWord) {
+  //console.log(message);
+  const words = message.split(' ');
+  //console.log(words.length * pricePerWord);
+  return words.length * pricePerWord;
+}
+
+console.log(getEngravingPrice('Forever', 20)); // 20
+console.log(getEngravingPrice('With Love Forever', 15)); // 45
+console.log(getEngravingPrice('Happy Birthday Dear Mom', 10)); // 40
+*/
+
+//! ====== МЕТОД concat() ======
+//! ** Объединяет массив с другими массивами или отдельными значениями и возвращает новый массив **
+/*
+ * Кав'ярня зберігає напої у двох списках — каву й чай — і хоче
+ * показати повне меню одним рядком.
+ * 1. Оголоси функцію buildMenuLine(coffee, tea), яка приймає два масиви напоїв.
+ * 2. Об'єднай coffee і tea в один масив методом concat().
+ * 3. Перетвори об'єднаний масив на рядок через join() з роздільником ', '.
+ * 4. Поверни отриманий рядок.
+ 
+function buildMenuLine(coffee, tea) {
+  const hotDrinks = coffee.concat(tea);
+
+  return hotDrinks.join(', ');
+}
+
+console.log(buildMenuLine(['Espresso', 'Latte'], ['Green', 'Black'])); // Espresso, Latte, Green, Black
+console.log(buildMenuLine(['Americano'], ['Herbal', 'Matcha'])); // Americano, Herbal, Matcha
+*/
+
+//! ====== МЕТОД includes() ======
+//! *** Содержится ли этот элемент в массиве? → true или false ***
+/*
+ * Магазин перевіряє, чи є товар на складі.
+ * Функція checkStorage(storage, item):
+ *   storage — масив назв товарів у нижньому регістрі;
+ *   item — назва товару, яку шукаємо (регістр будь-який).
+ * 1. Приведи item до нижнього регістру методом toLowerCase().
+ * 2. Якщо такий товар є в storage — поверни рядок виду
+ *    `plum is available to order!` (з назвою товару в нижньому регістрі).
+ * 3. Якщо товару немає — поверни рядок 'Sorry! We are out of stock!'.
+
+function checkStorage(storage, item) {
+  const lowerName = item.toLowerCase();
+  const inStock = storage.includes(lowerName);
+
+  if (inStock) {
+    return `${lowerName} is available to order!`;
+  } else {
+    return `Sorry! We are out of stock!`;
+  }
+}
+
+console.log(checkStorage(['apple', 'plum', 'pear'], 'plum')); // plum is available to order!
+console.log(checkStorage(['apple', 'plum', 'pear'], 'pEAr')); // pear is available to order!
+console.log(checkStorage(['apple', 'plum', 'pear'], 'carrot')); // Sorry! We are out of stock!
+*/
+
+//! ====== МЕТОД includes() ======
