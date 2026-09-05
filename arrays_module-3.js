@@ -385,3 +385,120 @@ console.log(
 ); // ['Cappuccino', 'Latte']
 console.log(getCommonItems(['Green', 'Black'], ['Herbal', 'Matcha'])); // []
 */
+
+//! ====== ЦИКЛ for...of ======
+//! *** for...of предназначен для перебора значений элементов ***
+/*
+const planets = ['Earth', 'Mars', 'Venus'];
+
+for (const planet of planets) {
+  console.log(planet);
+}
+*/
+
+/*
+ * Функція getBillTotal(prices) рахує загальну суму чека.
+ *   prices — масив цін позицій (числа).
+ * 1. Оголоси змінну total зі значенням 0.
+ * 2. Перебери масив prices циклом for...of.
+ * 3. На кожному кроці додай поточну ціну до total.
+ * 4. Поверни total.
+
+function getBillTotal(prices) {
+  let total = 0;
+  for (const price of prices) {
+    total += price;
+  }
+  return total;
+}
+
+console.log(getBillTotal([45, 30, 25])); // 100
+console.log(getBillTotal([80, 120, 60, 40])); // 300
+console.log(getBillTotal([])); // 0
+*/
+
+//! ====== ПСЕВДОМАССИВ arguments ======
+//! *** — это спец.объект, который существует внутри функции. Хранит переданные функции аргументы ***
+
+/*
+ * Функція getAverage() приймає будь-яку кількість чисел через arguments
+ * і повертає їхнє середнє значення. Усі аргументи — числа.
+ * 1. Оголоси змінну sum зі значенням 0.
+ * 2. Перебери arguments циклом for...of і додай кожне число до sum.
+ * 3. Поверни середнє — суму, поділену на кількість аргументів (arguments.length).
+
+function getAverage() {
+  let sum = 0;
+  for (const arg of arguments) {
+    sum += arg;
+  }
+  return sum / arguments.length;
+}
+
+console.log(getAverage(1, 2, 3, 4)); // 2.5
+console.log(getAverage(14, 8, 2)); // 8
+console.log(getAverage(27, 43, 2, 8, 36)); // 23.2
+*/
+
+//! ((((( ЗАДАЧА: НАИВЫСШАЯ СТАВКА )))))
+
+/*
+ * Онлайн-аукціон приймає будь-яку кількість ставок і визначає найвищу.
+ * Функція getHighestBid() не має параметрів — усі ставки приходять
+ * через arguments.
+ * 1. Оголоси змінну highest і поклади в неї першу ставку — arguments[0].
+ * 2. Перебери arguments циклом for...of.
+ * 3. Якщо поточна ставка більша за highest — онови highest.
+ * 4. Поверни highest.
+
+function getHighestBid() {
+  let highest = arguments[0];
+  for (const arg of arguments) {
+    if (arg > highest) {
+      highest = arg;
+    }
+  }
+  return highest;
+}
+
+console.log(getHighestBid(120, 340, 90)); // 340
+console.log(getHighestBid(50, 45)); // 50
+console.log(getHighestBid(200)); // 200
+*/
+
+//! ====== ПАРАМЕТРЫ ПО УМОЛЧАНИЮ ======
+//! == ПРИМЕР: 1 ==
+/*
+function describeOrder(size = 'medium') { //! 'medium' - параметр по умолчанию. Если оставить size пустым, выведет undefined
+  console.log(`Order size: ${size}`);
+}
+
+describeOrder('large'); // Order size: large
+describeOrder(); // Order size: medium
+*/
+//! == ПРАКТИКА ==
+
+/*
+ * SmileCare генерує години прийому — від відкриття до закриття.
+ * 1. Оголоси функцію getSlots(openHour, closeHour, step):
+ *    openHour — година відкриття (обов'язковий);
+ *    closeHour — година закриття (обов'язковий);
+ *    step — крок у годинах, за замовчуванням 1.
+ * 2. Створи порожній масив slots.
+ * 3. Цикл for від openHour до closeHour із кроком step — на кожній ітерації
+ *    додай у slots рядок виду `9:00` методом push().
+ * 4. Поверни slots.
+ */
+
+function getSlots(openHour, closeHour, step = 1) {
+  const slots = [];
+
+  for (let i = openHour; i <= closeHour; i += step) {
+    slots.push(`${i}:00`);
+  }
+  return slots;
+}
+
+console.log(getSlots(9, 12)); // ['9:00', '10:00', '11:00', '12:00']
+console.log(getSlots(9, 17, 2)); // ['9:00', '11:00', '13:00', '15:00', '17:00']
+console.log(getSlots(10, 16, 3)); // ['10:00', '13:00', '16:00']
