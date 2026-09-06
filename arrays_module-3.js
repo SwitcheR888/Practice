@@ -488,7 +488,6 @@ describeOrder(); // Order size: medium
  * 3. Цикл for від openHour до closeHour із кроком step — на кожній ітерації
  *    додай у slots рядок виду `9:00` методом push().
  * 4. Поверни slots.
- */
 
 function getSlots(openHour, closeHour, step = 1) {
   const slots = [];
@@ -502,3 +501,54 @@ function getSlots(openHour, closeHour, step = 1) {
 console.log(getSlots(9, 12)); // ['9:00', '10:00', '11:00', '12:00']
 console.log(getSlots(9, 17, 2)); // ['9:00', '11:00', '13:00', '15:00', '17:00']
 console.log(getSlots(10, 16, 3)); // ['10:00', '13:00', '16:00']
+*/
+
+//! ====== ФУНКЦИОНАЛЬНОЕ ВЫРАЖЕНИЕ (function declaration) ======
+//! *** Функциональное выражение — это функция, которая создаётся как значение и присваивается переменной. ***
+/*
+const double = function (n) {
+  return n * 2;
+};
+
+console.log(double(5)); // 10
+*/
+
+//! ====== ОБЛАСТЬ ВИДИМОСТИ ======
+//! ====== ЛОКАЛЬНАЯ ВИДИМОСТЬ ======
+/*
+//console.log(price); //! К переменной, которая находится внутри функции, нельзя обратится ДО!
+function showPrice() {
+  const price = 100; //! Переменная price - локальная для тела функции
+  console.log(price); // 100
+}
+
+showPrice();
+
+//console.log(price); //! К переменной, которая находится внутри функции, нельзя обратится ПОСЛЕ!
+*/
+//! ====== ГЛОБАЛЬНАЯ ВИДИМОСТЬ ======
+/*
+const currency = 'USD'; //! Переменная currency объявлена в глобальной видимости функции
+
+function showCurrency() {
+  console.log(currency); //! Можна обратиться к переменной изнутри функции
+}
+
+showCurrency();
+console.log(currency); //! Можна обратиться к переменной в конце (после) функции
+*/
+
+//! ====== СТЕК ВЫЗОВОВ (stack frame) ======
+/*
+function boilWater() {
+  console.log('Water boiled');
+}
+
+function makeCoffee() {
+  console.log('Start making coffee');
+  boilWater();
+  console.log('Coffee is ready');
+}
+
+makeCoffee();
+*/
