@@ -160,3 +160,153 @@ const property = 'city';
 
 console.log(user[property]);
 */
+
+//! ======= ИЗМЕНЕНИЕ ЗНАЧЕНИЯ СВОЙСТВ =======
+/*
+const book = {
+  title: 'The Last Kingdom',
+  author: 'Bernard Cornwell',
+  genres: ['historical prose', 'adventure'],
+  rating: 8.38,
+  isPublic: true,
+};
+
+console.log(book);
+
+book.rating = 88; //! Можна изменить любое значение в объекте через его свойство
+book.isPublic = false; //! -- || -- || -- ||
+book.genres.push('thriller'); //! Также, можна заменить значения в массиве, обратившись через ссылку массива
+
+console.log(book);
+*/
+//! ------ ПРАКТИКА ------
+/*
+ * Обʼєкт apartment описує квартиру. Онови його властивості:
+ * 1. price — постав 5000.
+ * 2. rating — постав 4.7.
+ * 3. owner.name — постав 'Henry Sibola'.
+ * 4. tags — додай у кінець масиву рядок 'trusted'.
+
+const apartment = {
+  imgUrl: 'https://picsum.photos/640/480',
+  descr: 'Spacious apartment in the city center',
+  rating: 4,
+  price: 2153,
+  tags: ['premium', 'promoted', 'top'],
+  owner: {
+    name: 'Henry',
+    phone: '982-126-1588',
+    email: 'henry.carter@aptmail.com',
+  },
+};
+
+apartment.price = 5000;
+apartment.rating = 4.7;
+apartment.owner.name = 'Henry Sibola';
+apartment.tags.push('trusted');
+
+console.log(apartment.price); // 5000
+console.log(apartment.rating); // 4.7
+console.log(apartment.owner.name); // Henry Sibola
+console.log(apartment.tags); // ['premium', 'promoted', 'top', 'trusted']
+*/
+
+//! ======== ДОБАВЛЕНИЕ СВОЙСТВ ========
+/*
+const book = {
+  title: 'The Last Kingdom',
+  author: 'Bernard Cornwell',
+  genres: ['historical prose', 'adventure'],
+  rating: 8.38,
+  isPublic: true,
+};
+
+book.rating = 88; //! Тут изменили значение
+book.pageCount = 21; //! Такого свойства pageCount со значением не существовало. Но его добавили
+book.price = { //! Добавили свойство price, значением которого является объект с двумя свойствами: hardcover и softcover
+  hardcover: 40,
+  softcover: 10,
+};
+
+console.log(book);
+*/
+
+//! ======== КРАТКОЕ ОПИСАНИЕ СВОЙСТВ ========
+/*
+const title = 'The Last Kingdom';
+const author = 'Bernard Cornwell';
+
+const book = {
+  title, //! Имя свойства и имя значения дублируются
+  author, //! Для таких ситуация используется синтаксис котортких свойств
+};
+
+console.log(book);
+console.log(book.title);
+console.log(book.author);
+*/
+
+//! ------ ПРАКТИКА ------
+/*
+ * Дані одного замовлення Sunny Coffee задані в окремих змінних:
+ * напій, розмір, ціна за одиницю та кількість.
+ *
+ * 1. Оголоси змінну total — загальну суму замовлення (ціна * кількість).
+ * 2. Збери обʼєкт order із властивостями drink, size, price, quantity, total.
+ *    Значення візьми з однойменних змінних, використавши короткі властивості.
+
+const drink = 'Cappuccino';
+const size = 'large';
+const price = 95;
+const quantity = 2;
+
+const total = price * quantity;
+
+const order = {
+  drink,
+  size,
+  price,
+  quantity,
+  total,
+};
+
+console.log(order); // { drink: 'Cappuccino', size: 'large', price: 95, quantity: 2, total: 190 }
+*/
+
+//! ======== ВЫЧИСЛИТЕЛЬНЫЕ СВОЙСТВА ========
+/*
+const key = 'author';
+
+const book = {
+  title: 'The Last Kingdom',
+  [key]: 'Bernard Cornwell', //! Значение переменной [key] и используется как имя свойства
+};
+
+//book[key] = 'Bernard Cornwell';
+
+console.log(book);
+*/
+
+//! ------ ПРАКТИКА ------
+
+/*
+ * У картці пацієнта SmileCare за раз оновлюють кілька контактних полів.
+ * Які саме поля — задано у змінних firstField і secondField,
+ * а нові значення — у firstValue і secondValue.
+ *
+ * Збери обʼєкт update одним літералом із двома обчислювальними властивостями:
+ * 1. Імʼя першої властивості береться зі змінної firstField, значення — firstValue.
+ * 2. Імʼя другої властивості береться зі змінної secondField, значення — secondValue.
+
+const firstField = 'phone';
+const firstValue = '098-123-4567';
+const secondField = 'email';
+const secondValue = 'patient@smilecare.com';
+
+const update = {
+  [firstField]: firstValue,
+  [secondField]: secondValue,
+};
+
+console.log(update); // { phone: '098-123-4567', email: 'patient@smilecare.com' }
+*/
