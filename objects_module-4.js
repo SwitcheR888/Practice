@@ -527,4 +527,3 @@ console.log(
 
 console.log(getOrderTotal([{ name: 'Americano', price: 50, quantity: 1 }])); // 50
 */
-Added new topics and examples for them
