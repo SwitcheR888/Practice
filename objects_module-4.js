@@ -310,3 +310,221 @@ const update = {
 
 console.log(update); // { phone: '098-123-4567', email: 'patient@smilecare.com' }
 */
+
+//! ======== МЕТОД Object.keys() ========
+/*
+const book = {
+  title: 'The Last Kingdom',
+  author: 'Bernard Cornwell',
+  genres: ['historical prose', 'adventure'],
+  rating: 8.38,
+};
+
+console.log(Object.keys(book)); //! Сначала вызываем массив ключей методом Object.keys() 
+const keys = Object.keys(book); //! Сохраняем массив ключей в переменную
+
+console.log(keys);
+
+for (const key of keys) { //! Для того чтобы вывести все свойства объекта, можна пройтись по массиву ключей for const key of keys
+  console.log(key);
+  console.log(book[key]); //! Если нужны значения, используем ключ для обращения к объекту
+}
+*/
+/*
+const apartment = {
+  rooms: 4,
+  floor: 7,
+  area: 120,
+  hasBalcony: true,
+};
+
+const keys = Object.keys(apartment);
+
+for (const key of keys) {
+  console.log(key);
+  console.log(apartment[key]);
+}
+*/
+
+//! --- ПРАКТИКА ---
+/*
+ * Функція getOrderTotal(order) рахує загальну вартість замовлення.
+ *   order — обʼєкт, де ключ це назва позиції, а значення — її вартість.
+ *
+ * 1. Оголоси всередині функції змінну total зі значенням 0.
+ * 2. Отримай масив ключів order через Object.keys().
+ * 3. Перебери цей масив циклом for...of.
+ * 4. Додай вартість кожної позиції до total.
+ * 5. Поверни total.
+
+function getOrderTotal(order) {
+  let total = 0;
+  const keys = Object.keys(order);
+  //console.log(keys);
+
+  for (const key of keys) {
+    //console.log(key, order[key]);
+    total += order[key];
+  }
+  return total;
+}
+
+console.log(getOrderTotal({ espresso: 60, latte: 85, cheesecake: 120 })); // 265
+console.log(getOrderTotal({ cappuccino: 75, muffin: 55 })); // 130
+console.log(getOrderTotal({ americano: 50 })); // 50
+*/
+
+//! --- ЗАДАЧА ---
+/*
+ * Функція getAffordable(menu, budget) збирає назви напоїв, доступних за бюджет.
+ *   menu — обʼєкт, де ключ це назва напою, а значення — його ціна.
+ *   budget — скільки грошей є в наявності.
+ *
+ * 1. Оголоси всередині функції порожній масив affordable.
+ * 2. Отримай масив ключів menu через Object.keys().
+ * 3. Перебери цей масив циклом for...of.
+ * 4. Якщо ціна напою не більша за budget, додай його назву (ключ) у affordable.
+ * 5. Поверни affordable.
+
+const coffeeMenu = {
+  espresso: 60,
+  latte: 85,
+  cappuccino: 75,
+  mocha: 90,
+};
+
+function getAffordable(menu, budget) {
+  const affordable = [];
+  const keys = Object.keys(menu);
+
+  for (const key of keys) {
+    if (menu[key] <= budget) {
+      affordable.push(key);
+    }
+  }
+  return affordable;
+}
+
+console.log(getAffordable(coffeeMenu, 75)); // ['espresso', 'cappuccino']
+console.log(getAffordable(coffeeMenu, 100)); // ['espresso', 'latte', 'cappuccino', 'mocha']
+console.log(getAffordable(coffeeMenu, 50)); // []
+*/
+
+//! ======== МЕТОД Object.values() ========
+//! --- ЗАДАЧА "НАПИТКИ ПО БЮДЖЕТУ" ---
+/*
+ * Функція getServicesTotal(priceList) рахує загальну вартість усіх послуг у прайсі.
+ *   priceList — обʼєкт, де ключ це назва послуги, а значення — її ціна.
+ * 1. Отримай масив цін через Object.values() і збережи його у змінну values.
+ * 2. Оголоси змінну total зі значенням 0.
+ * 3. Перебери values циклом for...of і додай кожну ціну до total.
+ * 4. Поверни total.
+
+function getServicesTotal(priceList) {
+  let total = 0;
+  const keys = Object.keys(priceList);
+  const values = Object.values(priceList);
+
+  //console.log(Object.keys(priceList)); //! Возвращает массив ключей
+  //console.log(Object.values(priceList)); //! Возвращает массив значений
+
+  for (const value of values) {
+    total += value;
+  }
+  return total;
+}
+
+console.log(getServicesTotal({ cleaning: 500 })); // 500
+console.log(getServicesTotal({ cleaning: 500, whitening: 1200 })); // 1700
+console.log(getServicesTotal({ cleaning: 500, whitening: 1200, filling: 800 })); // 2500
+*/
+
+//! --- ЗАДАЧА "РАСХОДЫ НА ЗАРПЛАТУ" ---
+/*
+ * Функція getTotalSalary(salaries) рахує загальну суму зарплат команди.
+ *   salaries — обʼєкт, де ключ це посада, а значення — зарплата.
+ * 1. Оголоси змінну total зі значенням 0.
+ * 2. Отримай масив зарплат через Object.values() і збережи його у змінну values.
+ * 3. Перебери values циклом for...of і додай кожну зарплату до total.
+ * 4. Поверни total.
+
+function getTotalSalary(salaries) {
+  let total = 0;
+  const values = Object.values(salaries);
+
+  for (const value of values) {
+    total += value;
+  }
+  return total;
+}
+
+console.log(getTotalSalary({ barista: 100, cashier: 150, manager: 80 })); // 330
+console.log(getTotalSalary({ barista: 200, cashier: 50, manager: 150 })); // 400
+console.log(getTotalSalary({ barista: 120, manager: 90 })); // 210
+*/
+
+//! ======== СОЗДАНИЕ И ОБХОД МАССИВА ОБЪЕКТОВ ========
+/*
+const books = [
+  { //! Объект №1 1-ая итерация
+    title: 'The Last Kingdom',
+    author: 'Bernard Cornwell',
+    rating: 8.38,
+  },
+  { //! Объект №2
+    title: 'Beside Still Waters',
+    author: 'Robert Sheckley',
+    rating: 8.51,
+  },
+  { //! Объект №3
+    title: 'Fahrenheit 451',
+    author: 'Ray Bradbury',
+    rating: 7.75,
+  },
+];
+
+for (const book of books) {
+  //console.log(book); //! Получаем ссылку на каждый объект итерации (№1, №2, №3)
+  console.log(book.rating); //! Обращаемся к свойствам объектов
+}
+*/
+
+//! --- ПРАКТИКА ---
+/*
+ * Функція getOrderTotal(order) рахує підсумкову суму замовлення.
+ *   order — масив позицій; кожна позиція це обʼєкт із властивостями
+ *   name (напій), price (ціна) і quantity (кількість).
+ *
+ * 1. Оголоси всередині функції змінну total зі значенням 0.
+ * 2. Перебери масив order циклом for...of.
+ * 3. Для кожної позиції додай до total її вартість — ціну, помножену на кількість.
+ * 4. Поверни total.
+
+function getOrderTotal(order) {
+  let total = 0;
+
+  for (const item of order) {
+    //console.log(item.price * item.quantity);
+    total += item.price * item.quantity;
+  }
+  return total;
+}
+
+console.log(
+  getOrderTotal([
+    { name: 'Espresso', price: 60, quantity: 2 },
+    { name: 'Latte', price: 85, quantity: 1 },
+    { name: 'Cheesecake', price: 120, quantity: 3 },
+  ])
+); // 565
+
+console.log(
+  getOrderTotal([
+    { name: 'Cappuccino', price: 75, quantity: 2 },
+    { name: 'Muffin', price: 55, quantity: 1 },
+  ])
+); // 205
+
+console.log(getOrderTotal([{ name: 'Americano', price: 50, quantity: 1 }])); // 50
+*/
+Added new topics and examples for them
