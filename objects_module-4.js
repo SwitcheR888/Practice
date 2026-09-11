@@ -504,7 +504,7 @@ function getOrderTotal(order) {
   let total = 0;
 
   for (const item of order) {
-    //console.log(item.price * item.quantity);
+  //console.log(item.price * item.quantity);
     total += item.price * item.quantity;
   }
   return total;
@@ -526,4 +526,56 @@ console.log(
 ); // 205
 
 console.log(getOrderTotal([{ name: 'Americano', price: 50, quantity: 1 }])); // 50
+*/
+
+//! ======== ПОИСК ОБЪЕКТА ПО ЗНАЧЕНИЮ СВОЙСТВ ========
+/*
+const books = [
+  { title: 'The Last Kingdom', author: 'Bernard Cornwell' },
+  { title: 'Beside Still Waters', author: 'Robert Sheckley' },
+  { title: 'Fahrenheit 451', author: 'Ray Bradbury' },
+];
+
+const authorToFind = 'Robert Sheckley';
+
+for (const book of books) {
+  console.log(book);
+  if (book.author === authorToFind) {
+    console.log(book.title);
+    break;
+  }
+}
+
+console.log('Done');
+*/
+
+//! --- ПРАКТИКА ---
+/*
+ * Функція findRoom(doctors, target) знаходить кабінет лікаря потрібної спеціальності.
+ *   doctors — масив лікарів; кожен лікар це обʼєкт із властивостями
+ *   specialty (спеціальність) і room (кабінет).
+ *   target — шукана спеціальність.
+ *
+ * 1. Перебери масив doctors циклом for...of.
+ * 2. Якщо specialty лікаря дорівнює target, поверни його room.
+ * 3. Якщо жоден лікар не підійшов, поверни null.
+
+const clinicDoctors = [
+  { specialty: 'therapist', room: 12 },
+  { specialty: 'surgeon', room: 7 },
+  { specialty: 'orthodontist', room: 21 },
+];
+
+function findRoom(doctors, target) {
+  for (const doctor of doctors) {
+    if (doctor.specialty === target) {
+      return doctor.room;
+    }
+  }
+  return null;
+}
+
+console.log(findRoom(clinicDoctors, 'surgeon')); // 7
+console.log(findRoom(clinicDoctors, 'therapist')); // 12
+console.log(findRoom(clinicDoctors, 'dentist')); // null
 */
