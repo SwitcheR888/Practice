@@ -52,7 +52,6 @@ console.log(aptRating); // 4
 console.log(aptPrice); // 2153
 console.log(aptTags); // ['premium', 'promoted', 'top']
 */
-
 //! ====== ВЛОЖЕННЫЕ СВОЙСТВА ======
 /*
 const book = { //! book - объект
@@ -69,8 +68,7 @@ console.log(book.genres[1]); //! Обращаться к любому элеме
 console.log(book.genres.length); //! Посмотреть длину массива // 2
 */
 
-//! --- ПРАКТИКА ---
-
+//! ((( ПРАКТИКА )))
 /*
  * Обʼєкт apartment описує квартиру: фото, опис, рейтинг, ціна, теги.
  *
@@ -108,9 +106,8 @@ console.log(apartment.tags.length);
 console.log(apartment.tags[0]);
 console.log(apartment.tags[apartment.tags.length - 1]);
 */
-
 //! ===== ДОСТУП ЧЕРЕЗ [] =====
-//! ** ПРАВИЛО **
+//! *** ПРАВИЛО ***
 //! . → имя свойства пишется прямо
 //! [] → внутри можно передать выражение, результат которого станет ключом.
 /*
@@ -126,7 +123,7 @@ console.log(book.title); //! Нельзя подставить переменн�
 console.log(book['title']); //! Можно использовать переменную. title - строковый ключ, который находится в []
 */
 
-//! == ПРАКТИКА № 1 ==
+//! ((( ПРАКТИКА № 1 )))
 /*
  * Обʼєкт apartment описує квартиру: фото, опис, рейтинг, ціна, теги.
  *
@@ -148,7 +145,7 @@ console.log(apartment['descr']);
 console.log(apartment['rating']);
 console.log(apartment['tags']);
 */
-//! == ПРАКТИКА № 2 ==
+//! ((( ПРАКТИКА № 2 )))
 /*
 const user = {
   name: 'Alex',
@@ -160,7 +157,6 @@ const property = 'city';
 
 console.log(user[property]);
 */
-
 //! ======= ИЗМЕНЕНИЕ ЗНАЧЕНИЯ СВОЙСТВ =======
 /*
 const book = {
@@ -179,7 +175,7 @@ book.genres.push('thriller'); //! Также, можна заменить зна
 
 console.log(book);
 */
-//! ------ ПРАКТИКА ------
+//! ((( ПРАКТИКА )))
 /*
  * Обʼєкт apartment описує квартиру. Онови його властивості:
  * 1. price — постав 5000.
@@ -210,7 +206,6 @@ console.log(apartment.rating); // 4.7
 console.log(apartment.owner.name); // Henry Sibola
 console.log(apartment.tags); // ['premium', 'promoted', 'top', 'trusted']
 */
-
 //! ======== ДОБАВЛЕНИЕ СВОЙСТВ ========
 /*
 const book = {
@@ -230,7 +225,6 @@ book.price = { //! Добавили свойство price, значением �
 
 console.log(book);
 */
-
 //! ======== КРАТКОЕ ОПИСАНИЕ СВОЙСТВ ========
 /*
 const title = 'The Last Kingdom';
@@ -245,8 +239,7 @@ console.log(book);
 console.log(book.title);
 console.log(book.author);
 */
-
-//! ------ ПРАКТИКА ------
+//! ((( ПРАКТИКА )))
 /*
  * Дані одного замовлення Sunny Coffee задані в окремих змінних:
  * напій, розмір, ціна за одиницю та кількість.
@@ -272,7 +265,6 @@ const order = {
 
 console.log(order); // { drink: 'Cappuccino', size: 'large', price: 95, quantity: 2, total: 190 }
 */
-
 //! ======== ВЫЧИСЛИТЕЛЬНЫЕ СВОЙСТВА ========
 /*
 const key = 'author';
@@ -286,9 +278,7 @@ const book = {
 
 console.log(book);
 */
-
-//! ------ ПРАКТИКА ------
-
+//! ((( ПРАКТИКА )))
 /*
  * У картці пацієнта SmileCare за раз оновлюють кілька контактних полів.
  * Які саме поля — задано у змінних firstField і secondField,
@@ -310,7 +300,6 @@ const update = {
 
 console.log(update); // { phone: '098-123-4567', email: 'patient@smilecare.com' }
 */
-
 //! ======== МЕТОД Object.keys() ========
 /*
 const book = {
@@ -345,8 +334,7 @@ for (const key of keys) {
   console.log(apartment[key]);
 }
 */
-
-//! --- ПРАКТИКА ---
+//! ((( ПРАКТИКА )))
 /*
  * Функція getOrderTotal(order) рахує загальну вартість замовлення.
  *   order — обʼєкт, де ключ це назва позиції, а значення — її вартість.
@@ -373,8 +361,7 @@ console.log(getOrderTotal({ espresso: 60, latte: 85, cheesecake: 120 })); // 265
 console.log(getOrderTotal({ cappuccino: 75, muffin: 55 })); // 130
 console.log(getOrderTotal({ americano: 50 })); // 50
 */
-
-//! --- ЗАДАЧА ---
+//! *** ЗАДАЧА ***
 /*
  * Функція getAffordable(menu, budget) збирає назви напоїв, доступних за бюджет.
  *   menu — обʼєкт, де ключ це назва напою, а значення — його ціна.
@@ -409,9 +396,8 @@ console.log(getAffordable(coffeeMenu, 75)); // ['espresso', 'cappuccino']
 console.log(getAffordable(coffeeMenu, 100)); // ['espresso', 'latte', 'cappuccino', 'mocha']
 console.log(getAffordable(coffeeMenu, 50)); // []
 */
-
 //! ======== МЕТОД Object.values() ========
-//! --- ЗАДАЧА "НАПИТКИ ПО БЮДЖЕТУ" ---
+//! *** ЗАДАЧА: "НАПИТКИ ПО БЮДЖЕТУ" ***
 /*
  * Функція getServicesTotal(priceList) рахує загальну вартість усіх послуг у прайсі.
  *   priceList — обʼєкт, де ключ це назва послуги, а значення — її ціна.
@@ -438,7 +424,6 @@ console.log(getServicesTotal({ cleaning: 500 })); // 500
 console.log(getServicesTotal({ cleaning: 500, whitening: 1200 })); // 1700
 console.log(getServicesTotal({ cleaning: 500, whitening: 1200, filling: 800 })); // 2500
 */
-
 //! --- ЗАДАЧА "РАСХОДЫ НА ЗАРПЛАТУ" ---
 /*
  * Функція getTotalSalary(salaries) рахує загальну суму зарплат команди.
@@ -462,7 +447,6 @@ console.log(getTotalSalary({ barista: 100, cashier: 150, manager: 80 })); // 330
 console.log(getTotalSalary({ barista: 200, cashier: 50, manager: 150 })); // 400
 console.log(getTotalSalary({ barista: 120, manager: 90 })); // 210
 */
-
 //! ======== СОЗДАНИЕ И ОБХОД МАССИВА ОБЪЕКТОВ ========
 /*
 const books = [
@@ -488,8 +472,7 @@ for (const book of books) {
   console.log(book.rating); //! Обращаемся к свойствам объектов
 }
 */
-
-//! --- ПРАКТИКА ---
+//! ((( ПРАКТИКА )))
 /*
  * Функція getOrderTotal(order) рахує підсумкову суму замовлення.
  *   order — масив позицій; кожна позиція це обʼєкт із властивостями
@@ -527,7 +510,6 @@ console.log(
 
 console.log(getOrderTotal([{ name: 'Americano', price: 50, quantity: 1 }])); // 50
 */
-
 //! ======== ПОИСК ОБЪЕКТА ПО ЗНАЧЕНИЮ СВОЙСТВ ========
 /*
 const books = [
@@ -540,7 +522,7 @@ const authorToFind = 'Robert Sheckley';
 
 for (const book of books) {
   console.log(book);
-  if (book.author === authorToFind) {
+  if (book.author === authorToFind) { //! book.author → значение свойства author текущего объекта. authorToFind → значение, которое мы ищем
     console.log(book.title);
     break;
   }
@@ -548,8 +530,7 @@ for (const book of books) {
 
 console.log('Done');
 */
-
-//! --- ПРАКТИКА ---
+//! ((( ПРАКТИКА )))
 /*
  * Функція findRoom(doctors, target) знаходить кабінет лікаря потрібної спеціальності.
  *   doctors — масив лікарів; кожен лікар це обʼєкт із властивостями
@@ -567,8 +548,8 @@ const clinicDoctors = [
 ];
 
 function findRoom(doctors, target) {
-  for (const doctor of doctors) {
-    if (doctor.specialty === target) {
+  for (const doctor of doctors) { //! doctors — массив объектов
+    if (doctor.specialty === target) { //! На каждой итерации проверяем doctor.specialty === target
       return doctor.room;
     }
   }
@@ -578,4 +559,121 @@ function findRoom(doctors, target) {
 console.log(findRoom(clinicDoctors, 'surgeon')); // 7
 console.log(findRoom(clinicDoctors, 'therapist')); // 12
 console.log(findRoom(clinicDoctors, 'dentist')); // null
+*/
+//! ======== МЕТОДЫ ОБЪЕКТА ========
+//! *** Функция, которая находится внутри объекта, называется -- МЕТОДОМ ОБЪЕКТА ***
+/*
+const bookShelf = {
+  books: ['The Last Kingdom', 'Dream Guardian'],
+  getBooks() { //! getBooks и addBook - методы объектов
+    return 'Returning all books';
+  },
+  addBook(bookName) { //! bookName - параметр
+    return `Adding book ${bookName}`;
+  },
+};
+
+console.log(bookShelf.addBook('Fahrenheit 451')); // Adding book Fahrenheit 451
+console.log(bookShelf.getBooks()); // Returning all books
+*/
+//! (((( ПРАКТИКА ))))
+/*
+ * Оголоси обʼєкт coffeeMenu, який описує меню Sunny Coffee, з властивостями:
+ * 1. items — масив для позицій меню. Поки що порожній.
+ * 2. getItems() — метод, який повертає рядок 'List of all menu items'.
+ * 3. addItem(itemName) — метод, який повертає рядок 'Adding ' разом
+ *    зі значенням параметра itemName (наприклад, 'Adding Latte').
+
+const coffeeMenu = {
+  items: [],
+  getItems() {
+    return 'List of all menu items';
+  },
+  addItem(itemName) {
+    return `Adding ${itemName}`;
+  },
+};
+
+console.log(coffeeMenu.getItems()); // List of all menu items
+console.log(coffeeMenu.addItem('Latte')); // Adding Latte
+console.log(coffeeMenu.addItem('Cheesecake')); // Adding Cheesecake
+*/
+//! ======== ДОСТУП К СВОЙСТВАМ в МЕТОДАХ (this) ========
+/*
+const bookShelf = {
+  books: ['HTML', 'CSS', 'JavaScript'], //! books — свойство объекта
+
+  getBooks() { //! getBooks() — метод объекта
+    console.log(this.books); //! this — ссылка на сам объект bookShelf
+  },
+};
+bookShelf.getBooks();
+*/
+//! (((( ПРАКТИКА ))))
+/*
+ * Обʼєкт coffeeMenu описує меню Sunny Coffee:
+ *   items — масив позицій меню.
+ *   getItems() — метод, який зараз повертає статичний рядок.
+ *
+ * Зміни метод getItems() так, щоб він повертав не рядок,
+ * а значення властивості items свого обʼєкта. Скористайся this.
+
+const coffeeMenu = {
+  items: ['Latte', 'Espresso', 'Cappuccino'],
+
+  getItems() {
+    return this.items;
+  },
+};
+
+console.log(coffeeMenu.getItems()); // ['Latte', 'Espresso', 'Cappuccino']
+*/
+//! ======== ИЗМЕНЕНИЕ ПО ССЫЛКЕ ========
+/*
+const bookShelf = {
+  books: ['HTML', 'CSS', 'JavaScript'],
+};
+
+const books = bookShelf.books; //! books и bookShelf.books обращаются к одному массиву
+books.push('React');
+
+console.log(bookShelf.books); // ['HTML', 'CSS', 'JavaScript', 'React']
+*/
+//! ((( ПРИМЕР )))
+/*
+const user = {
+  name: 'Кирилл',
+  skills: ['HTML', 'CSS'],
+};
+
+const skills = user.skills;
+skills.push('JavaScript');
+
+console.log(skills); // (3) ['HTML', 'CSS', 'JavaScript']
+console.log(user.skills); // (3) ['HTML', 'CSS', 'JavaScript']
+*/
+//! ((( ПРАКТИКА )))
+/*
+ * Обʼєкт coffeeMenu описує меню Sunny Coffee:
+ *   items — масив позицій меню.
+ *   getItems() — метод, який повертає масив позицій.
+ *   addItem(itemName) — метод, який поки нічого не робить.
+ *
+ * Зміни метод addItem(itemName) так, щоб він додавав itemName
+ * у кінець масиву items свого обʼєкта. Скористайся this. Повертати нічого не треба.
+
+const coffeeMenu = {
+  items: ['Latte', 'Espresso', 'Cappuccino'],
+  getItems() {
+    return this.items;
+  },
+  addItem(itemName) {
+    this.items.push(itemName);
+  },
+};
+
+coffeeMenu.addItem('Mocha');
+coffeeMenu.addItem('Americano');
+
+console.log(coffeeMenu.getItems()); // ['Latte', 'Espresso', 'Cappuccino', 'Mocha', 'Americano']
 */
