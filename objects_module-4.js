@@ -677,3 +677,180 @@ coffeeMenu.addItem('Americano');
 
 console.log(coffeeMenu.getItems()); // ['Latte', 'Espresso', 'Cappuccino', 'Mocha', 'Americano']
 */
+//! ======== МАССИВ КАК СВОЙСТВО ОБЪЕКТА ========
+/*
+const user = { //! user - объект
+  name: 'Кирилл',
+  skills: ['HTML', 'CSS'], //! skills - свойство, а ['HTML', 'CSS'] - значение этого свойства - массив
+};
+
+user.skills.push('JavaScript'); //! user.skills - обращение к массиву
+
+console.log(user.skills);
+*/
+//! ((( ПРАКТИКА )))
+/*
+ * Обʼєкт coffeeMenu описує меню Sunny Coffee.
+ *   items — масив позицій, де кожна позиція це обʼєкт із властивостями
+ *   name (напій), price (ціна) і stock (кількість на складі).
+ *   getItems() — повертає масив позицій.
+ *   addItem(item) — додає нову позицію в масив.
+ *
+ * Додай в обʼєкт метод getTotalStock(), який:
+ * 1. Оголошує змінну total зі значенням 0.
+ * 2. Перебирає масив позицій через this.items циклом for...of.
+ * 3. Додає кількість на складі кожної позиції до total.
+ * 4. Повертає total.
+
+const coffeeMenu = {
+  items: [
+    { name: 'Latte', price: 85, stock: 12 },
+    { name: 'Espresso', price: 60, stock: 30 },
+    { name: 'Cappuccino', price: 75, stock: 18 },
+  ],
+  getItems() {
+    return this.items;
+  },
+  addItem(item) {
+    this.items.push(item);
+  },
+  getTotalStock() {
+    let total = 0;
+
+    for (const item of this.items) {
+      total += item.stock;
+    }
+    return total;
+  },
+};
+
+console.log(coffeeMenu.getTotalStock()); // 60
+*/
+//! ======== ПЕРЕОБРАЗОВАНИЕ ОБЪЕКТА В МАССИВ ========
+/*
+const bookShelf = {
+  books: [
+    { title: 'The Last Kingdom', rating: 8 },
+    { title: 'Dream Guardian', rating: 6 },
+  ],
+  changeRating(bookName, newRating) {
+    for (const book of this.books) { //! for - Перебирает массив this.books на его элементы по одному
+      if (book.title === bookName) { //! if - Если название текущей книги совпадает с названием, которое нам передали
+        book.rating = newRating; //! newRating = 9
+      }
+    }
+  },
+};
+
+bookShelf.changeRating('Dream Guardian', 9); //! в метод передаются два значения
+bookShelf.changeRating('The Last Kingdom', 4);
+
+console.log(bookShelf.books); // [ { title: 'The Last Kingdom', rating: 4 }, { title: 'Dream Guardian', rating: 9 } ]
+*/
+//! ((( ПРАКТИКА )))
+/*
+ * Обʼєкт coffeeMenu описує меню Sunny Coffee.
+ *   items — масив позицій, де кожна позиція це обʼєкт із властивостями
+ *   name (напій), price (ціна) і stock (кількість на складі).
+ *   getItems() — повертає масив позицій.
+ *   addItem(item) — додає нову позицію в масив.
+ *
+ * Додай в обʼєкт метод changePrice(itemName, newPrice), який:
+ * 1. Перебирає масив позицій через this.items циклом for...of.
+ * 2. Якщо name позиції дорівнює itemName, присвоює її price значення newPrice.
+
+const coffeeMenu = {
+  items: [
+    { name: 'Latte', price: 85, stock: 12 },
+    { name: 'Espresso', price: 60, stock: 30 },
+    { name: 'Cappuccino', price: 75, stock: 18 },
+  ],
+  getItems() {
+    return this.items;
+  },
+  addItem(item) {
+    this.items.push(item);
+  },
+  changePrice(itemName, newPrice) {
+    for (const item of this.items) {
+      if (item.name === itemName) {
+        item.price = newPrice;
+      }
+    }
+  },
+};
+
+coffeeMenu.changePrice('Espresso', 65);
+
+console.log(coffeeMenu.getItems());
+// [ { name: 'Latte', price: 85, stock: 12 }, { name: 'Espresso', price: 65, stock: 30 }, { name: 'Cappuccino', price: 75, stock: 18 } ]
+*/
+//! --- ЗАДАЧА "БАНКОВСКИЙ СЧЕТ" ---
+/*
+ * Обʼєкт account описує банківський рахунок.
+ * Кожна транзакція — це обʼєкт із властивостями type та amount.
+ * Тип транзакції type — це рядок 'deposit' (покласти) або 'withdraw' (зняти).
+ * Допиши тіла методів згідно з описом до кожного.
+ */
+const account = {
+  // Поточний баланс рахунку
+  balance: 0,
+
+  // Історія транзакцій
+  transactions: [],
+
+  /*
+   * Додає суму до балансу.
+   * Приймає суму amount, додає її до balance,
+   * а в transactions додає обʼєкт { type: 'deposit', amount }.
+   */
+  deposit(amount) {
+    this.balance = this.balance + amount;
+    this.transactions.push({ type: 'deposit', amount });
+  },
+
+  /*
+   * Знімає суму з балансу.
+   * Якщо amount більший за поточний баланс — виводить повідомлення
+   * `Неможливо зняти ${amount}: недостатньо коштів` і нічого не робить.
+   * Інакше віднімає amount від balance
+   * і додає в transactions обʼєкт { type: 'withdraw', amount }.
+   */
+  withdraw(amount) {
+    if (amount > this.balance) {
+      console.log(`Неможливо зняти ${amount}: недостатньо коштів`);
+    } else {
+      this.balance = this.balance - amount;
+      this.transactions.push({ type: 'withdraw', amount });
+    }
+  },
+
+  // Повертає поточний баланс
+  getBalance() {
+    return this.balance;
+  },
+
+  // Повертає загальну суму транзакцій заданого типу type
+  getTransactionTotal(type) {
+    let total = 0;
+
+    for (const transaction of this.transactions) {
+      if (transaction.type === type) {
+        total += transaction.amount;
+      }
+    }
+    return total;
+  },
+};
+
+// Твій код тут
+
+account.deposit(1000);
+account.deposit(500);
+account.withdraw(300);
+
+console.log(account.getBalance()); // 1200
+console.log(account.getTransactionTotal('deposit')); // 1500
+console.log(account.getTransactionTotal('withdraw')); // 300
+
+account.withdraw(5000); // Неможливо зняти 5000: недостатньо коштів
