@@ -791,23 +791,24 @@ console.log(coffeeMenu.getItems());
  * Кожна транзакція — це обʼєкт із властивостями type та amount.
  * Тип транзакції type — це рядок 'deposit' (покласти) або 'withdraw' (зняти).
  * Допиши тіла методів згідно з описом до кожного.
- */
+
 const account = {
   // Поточний баланс рахунку
   balance: 0,
 
   // Історія транзакцій
   transactions: [],
+}
 
   /*
    * Додає суму до балансу.
    * Приймає суму amount, додає її до balance,
    * а в transactions додає обʼєкт { type: 'deposit', amount }.
-   */
-  deposit(amount) {
+
+  deposit(amount); {
     this.balance = this.balance + amount;
     this.transactions.push({ type: 'deposit', amount });
-  },
+  }
 
   /*
    * Знімає суму з балансу.
@@ -815,23 +816,23 @@ const account = {
    * `Неможливо зняти ${amount}: недостатньо коштів` і нічого не робить.
    * Інакше віднімає amount від balance
    * і додає в transactions обʼєкт { type: 'withdraw', amount }.
-   */
-  withdraw(amount) {
+
+  withdraw(amount); {
     if (amount > this.balance) {
       console.log(`Неможливо зняти ${amount}: недостатньо коштів`);
     } else {
       this.balance = this.balance - amount;
       this.transactions.push({ type: 'withdraw', amount });
     }
-  },
+  }
 
   // Повертає поточний баланс
-  getBalance() {
+  getBalance(); {
     return this.balance;
-  },
+  }
 
   // Повертає загальну суму транзакцій заданого типу type
-  getTransactionTotal(type) {
+  getTransactionTotal(type); {
     let total = 0;
 
     for (const transaction of this.transactions) {
@@ -840,10 +841,7 @@ const account = {
       }
     }
     return total;
-  },
-};
-
-// Твій код тут
+  }
 
 account.deposit(1000);
 account.deposit(500);
@@ -854,3 +852,4 @@ console.log(account.getTransactionTotal('deposit')); // 1500
 console.log(account.getTransactionTotal('withdraw')); // 300
 
 account.withdraw(5000); // Неможливо зняти 5000: недостатньо коштів
+*/
