@@ -311,24 +311,286 @@ console.log(newPrices); // [150, 250, 350]
 */
 //! *** ПРИМЕРЫ ***
 //! *** 1 ***
+/*
+const drinks = ['Espresso', 'Cappuchino', 'Latte'];
 
+const drinksInUpperCase = drinks.map(drink => drink.toUpperCase());
+
+console.log(drinksInUpperCase); // ['ESPRESSO', 'CAPPUCHINO', 'LATTE']
+*/
 //! *** 2 ***
+/*
+ * Есть массив с числами 45, 60, 75
+ * Нужно получить новый массив чисел такой же длинны, где каждое число будет умноженное на * 0.9 (т.е. - 10%)
+ *
+ * 1. Перебрать массив поэлементно (map)
+ * 2. В новом массиве каждый элемент должен быть умножен на 0.9
+ */
+//! Вариант 1
+//const prices = [45, 60, 75];
+// const discountPrices = [];
+
+// for (const price of prices) {
+//   //  console.log(price * 0.9);
+//   discountPrices.push(price * 0.9);
+// }
+
+// console.log(discountPrices);
+
+//! Вариант 2
+/*
+const prices = [45, 60, 75];
+
+const discountPrices = prices.map(price => {
+  //! Метод map перебирает текущий массив + создает новый, на каждой итерации цикла вызывает
+  //! callback функцию и передает ей текущее значение на итерации. Возвращает новый массив
+  return price * 0.9;
+});
+
+console.log(discountPrices);
+*/
 //! *** 3 ***
-// *
-//  * Функція getDrinkCodes(drinks) повертає новий масив кодів напоїв для каси.
-//  * Код — це перші три літери назви у верхньому регістрі.
-//  *   drinks — масив назв напоїв (рядки).
-//  * 1. Оголоси getDrinkCodes як стрілочну функцію.
-//  * 2. Перебери масив drinks методом map().
-//  * 3. У колбеку збережи перші три літери назви у змінну shortName
-//  *    за допомогою методу slice().
-//  * 4. Поверни з колбека shortName у верхньому регістрі.
-//  * 5. Поверни новий масив, який дав map().
-//  */
+/*
+ * Функція getDrinkCodes(drinks) повертає новий масив кодів напоїв для каси.
+ * Код — це перші три літери назви у верхньому регістрі.
+ *   drinks — масив назв напоїв (рядки).
+ * 1. Оголоси getDrinkCodes як стрілочну функцію.
+ * 2. Перебери масив drinks методом map().
+ * 3. У колбеку збережи перші три літери назви у змінну shortName
+ *    за допомогою методу slice().
+ * 4. Поверни з колбека shortName у верхньому регістрі.
+ * 5. Поверни новий масив, який дав map().
 
-// // Твій код тут
+const getDrinkCodes = drinks => {
+  return drinks.map(drink => {
+    const shortName = drink.slice(0, 3);
 
-// console.log(getDrinkCodes(['Espresso', 'Cappuccino', 'Latte'])); // ['ESP', 'CAP', 'LAT']
-// console.log(getDrinkCodes(['Americano', 'Mocha'])); // ['AME', 'MOC']
-// console.log(getDrinkCodes(['Tea'])); // ['TEA']
-//! *** 4 ***
+    return shortName.toUpperCase();
+  });
+};
+
+console.log(getDrinkCodes(['Espresso', 'Cappuccino', 'Latte'])); // ['ESP', 'CAP', 'LAT']
+console.log(getDrinkCodes(['Tea'])); // ['TEA']
+console.log(getDrinkCodes(['Americano', 'Mocha'])); // ['AME', 'MOC']
+*/
+
+//! ==== МЕТОД map() и МАССИВ ОБЪЕКТОВ ====
+/*
+const menu = [
+  { name: 'Espresso', price: 45 },
+  { name: 'Cappuccino', price: 60 },
+  { name: 'Latte', price: 75 },
+];
+
+const names = menu.map(item => {
+  return item.name;
+  //  console.log(item.name, item.price);
+});
+
+console.log(names); // ['Espresso', 'Cappuccino', 'Latte']
+
+const prices = menu.map(item => {
+  return item.price;
+});
+
+console.log(prices); // [45, 60, 75]
+*/
+
+//! *** ЗАДАЧА ***
+/*
+ * Функція getPriceList(services) повертає новий масив рядків для прайсу.
+ *   services — масив обʼєктів з властивостями name і price.
+ * 1. Оголоси getPriceList як стрілочну функцію.
+ * 2. Перебери масив services методом map().
+ * 3. У колбеку поверни рядок у форматі 'Cleaning: 450 UAH'.
+ * 4. Поверни новий масив, який дав map().
+
+const getPriceList = services => {
+  return services.map(service => {
+    return `${service.name}: ${service.price} UAH`;
+  });
+};
+
+console.log(
+  getPriceList([
+    { name: 'Cleaning', price: 450 },
+    { name: 'Whitening', price: 1200 },
+    { name: 'Filling', price: 800 },
+  ])
+); // ['Cleaning: 450 UAH', 'Whitening: 1200 UAH', 'Filling: 800 UAH']
+
+console.log(
+  getPriceList([
+    { name: 'Crown', price: 3500 },
+    { name: 'Implant', price: 9000 },
+  ])
+); // ['Crown: 3500 UAH', 'Implant: 9000 UAH']
+*/
+
+//! *** ЗАДАЧА: ПОЧТА ПОЛЬЗОВАТЕЛЯ ***
+/*
+ * Функція getUserEmails(users) повертає масив поштових адрес користувачів.
+ *   users — масив обʼєктів користувачів.
+ * 1. Оголоси getUserEmails як стрілочну функцію.
+ * 2. Перебери масив users методом map().
+ * 3. У колбеку поверни значення властивості email поточного користувача.
+ * 4. Поверни новий масив, який дав map().
+
+const allUsers = [
+  {
+    name: 'Alex',
+    email: 'alex@indexia.com',
+    eyeColor: 'blue',
+    friends: ['Sam'],
+    isActive: false,
+    balance: 2811,
+    skills: ['html', 'css'],
+    gender: 'male',
+    age: 37,
+  },
+  {
+    name: 'Nora',
+    email: 'nora@tubesys.com',
+    eyeColor: 'blue',
+    friends: ['Kim', 'Sam'],
+    isActive: true,
+    balance: 3821,
+    skills: ['figma', 'html', 'css', 'testing', 'git'],
+    gender: 'female',
+    age: 34,
+  },
+  {
+    name: 'Max',
+    email: 'max@xinware.com',
+    eyeColor: 'green',
+    friends: ['Leo', 'Iris', 'Kim'],
+    isActive: false,
+    balance: 3793,
+    skills: ['sql', 'node', 'git', 'html', 'javascript'],
+    gender: 'male',
+    age: 24,
+  },
+  {
+    name: 'Iris',
+    email: 'iris@omatom.com',
+    eyeColor: 'green',
+    friends: ['Nora', 'Leo'],
+    isActive: true,
+    balance: 2278,
+    skills: ['react', 'javascript', 'css'],
+    gender: 'female',
+    age: 21,
+  },
+  {
+    name: 'Sam',
+    email: 'sam@nurali.com',
+    eyeColor: 'blue',
+    friends: ['Alex', 'Max'],
+    isActive: true,
+    balance: 3951,
+    skills: ['git', 'node', 'sql'],
+    gender: 'male',
+    age: 27,
+  },
+  {
+    name: 'Leo',
+    email: 'leo@furnigeer.com',
+    eyeColor: 'brown',
+    friends: ['Iris', 'Kim'],
+    isActive: false,
+    balance: 1498,
+    skills: ['testing', 'html', 'figma'],
+    gender: 'male',
+    age: 38,
+  },
+  {
+    name: 'Kim',
+    email: 'kim@kog.com',
+    eyeColor: 'brown',
+    friends: ['Nora', 'Max'],
+    isActive: true,
+    balance: 2764,
+    skills: ['javascript', 'react', 'node'],
+    gender: 'female',
+    age: 39,
+  },
+];
+
+// const getUserEmails = users => {
+//   return users.map(user => user.email);
+//   //return user.email; //! Можно написать короче. Неявным возвратом
+// };
+
+const getUserEmails = users => users.map(user => user.email);
+
+console.log(getUserEmails(allUsers));
+// ['alex@indexia.com', 'nora@tubesys.com', 'max@xinware.com',
+//  'iris@omatom.com', 'sam@nurali.com', 'leo@furnigeer.com', 'kim@kog.com']
+*/
+
+//! ==== МЕТОД filter() ====
+/*
+const numbers = [1, 2, 3, 4, 5, 6];
+
+/*
+ * С этого массива нужны только четные числа
+
+const evenNumbers = numbers.filter(number => {
+  return number % 2 === 0;
+});
+
+console.log(evenNumbers); // [2, 4, 6]
+*/
+
+//! *** ПРИМЕР ***
+/*
+const prices = [320, 750, 180, 1200, 460];
+
+/*
+ * Необходимо оставить только те чилса, которые больше 500
+
+const expensivePrices = prices.filter(price => price > 500);
+
+console.log(expensivePrices); // [750, 1200]
+*/
+
+//! *** ЗАДАЧА ***
+/*
+const numbers = [12, 5, 27, 8, 31, 14, 3, 20];
+/*
+ * Создай новый массив bigNumbers, в котором останутся только числа больше 15.
+
+const bigNumbers = numbers.filter(number => number > 15);
+console.log(bigNumbers);
+*/
+
+//! *** ПРАКТИКА ***
+/*
+ * Функція getPricesInRange(prices, minPrice, maxPrice) повертає новий масив
+ * з цін, які входять у діапазон від minPrice до maxPrice включно.
+ *   prices — масив цін (числа).
+ *   minPrice, maxPrice — межі діапазону.
+ * 1. Оголоси getPricesInRange як стрілочну функцію.
+ * 2. Перебери масив prices методом filter().
+ * 3. У колбеку поверни true лише для тих цін, які не менші за minPrice
+ *    і не більші за maxPrice.
+ * 4. Поверни новий масив, який дав filter().
+
+const menuPrices = [55, 120, 40, 85, 95, 25, 150];
+
+const getPricesInRange = (prices, minPrice, maxPrice) => {
+  return prices.filter(price => {
+    return price >= minPrice && price <= maxPrice;
+  });
+};
+
+// const getPricesInRange = (prices, minPrice, maxPrice) => {
+//   return prices.filter(price => price >= minPrice && price <= maxPrice); //! Сокращенный вараинт, но не подробный
+// };
+
+console.log(getPricesInRange(menuPrices, 50, 100)); // [55, 85, 95]
+console.log(getPricesInRange(menuPrices, 25, 45)); // [40, 25]
+console.log(getPricesInRange(menuPrices, 200, 300)); // []
+*/
+
+//! Фильтрация массива объектов
