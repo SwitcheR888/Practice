@@ -593,4 +593,192 @@ console.log(getPricesInRange(menuPrices, 25, 45)); // [40, 25]
 console.log(getPricesInRange(menuPrices, 200, 300)); // []
 */
 
-//! Фильтрация массива объектов
+//! ==== ФИЛЬТРАЦИЯ МАССИВА ОБЪЕКТОВ ====
+//! *** ПРИМЕР ***
+/*
+* Вместо чисел, теперь объекты.
+--
+* Нужно оставить только пользователей, которым 18 лет и больше.
+
+const users = [
+  { name: 'Alex', age: 17 },
+  { name: 'Bob', age: 25 },
+  { name: 'Kate', age: 19 },
+  { name: 'Mike', age: 30 },
+];
+
+const adults = users.filter(user => user.age >= 18);
+
+console.log(adults);
+// 0: {name: "Bob", age: 25}
+// 1: {name: "Kate", age: 19}
+// 2: {name: "Mike", age: 30}
+*/
+
+//! *** ПРАКТИКА ***
+/*
+ * Масив books містить книги з властивостями title, author і rating.
+ * 1. Оголоси змінну topRatedBooks і поклади в неї масив книг,
+ *    рейтинг яких не менший за minRating. Використай метод filter().
+ * 2. Оголоси змінну booksByAuthor і поклади в неї масив книг,
+ *    автор яких збігається зі значенням змінної author.
+
+const books = [
+  { title: 'Silent Harbor', author: 'Alex', rating: 8.38 },
+  { title: 'Paper Moons', author: 'Nora', rating: 8.51 },
+  { title: 'The Glass Garden', author: 'Leo', rating: 7.75 },
+  { title: 'North of Winter', author: 'Kim', rating: 7.94 },
+  { title: 'Ashes and Salt', author: 'Alex', rating: 8.67 },
+];
+
+const minRating = 8;
+const author = 'Alex';
+
+const topRatedBooks = books.filter(book => book.rating >= minRating);
+
+console.log(topRatedBooks);
+// [
+//   { title: 'Silent Harbor', author: 'Alex', rating: 8.38 },
+//   { title: 'Paper Moons', author: 'Nora', rating: 8.51 },
+//   { title: 'Ashes and Salt', author: 'Alex', rating: 8.67 }
+// ]
+
+const booksByAuthor = books.filter(book => book.author === author);
+
+console.log(booksByAuthor);
+// [
+//   { title: 'Silent Harbor', author: 'Alex', rating: 8.38 },
+//   { title: 'Ashes and Salt', author: 'Alex', rating: 8.67 }
+// ]
+*/
+
+//! *** ЗАДАЧА: ПОИСК ПО ЦВЕТУ ГЛАЗ ***
+/*
+ * Функція getUsersWithEyeColor(users, color) повертає масив користувачів,
+ * у яких колір очей збігається зі значенням параметра color.
+ *   users — масив обʼєктів користувачів.
+ *   color — колір очей (рядок).
+ * 1. Оголоси getUsersWithEyeColor як стрілочну функцію.
+ * 2. Перебери масив users методом filter().
+ * 3. У колбеку поверни true лише для тих користувачів,
+ *    у яких властивість eyeColor дорівнює color.
+ * 4. Поверни новий масив, який дав filter().
+
+const allUsers = [
+  {
+    name: 'Alex',
+    email: 'alex@indexia.com',
+    eyeColor: 'blue',
+    friends: ['Sam'],
+    isActive: false,
+    balance: 2811,
+    skills: ['html', 'css'],
+    gender: 'male',
+    age: 37,
+  },
+  {
+    name: 'Nora',
+    email: 'nora@tubesys.com',
+    eyeColor: 'blue',
+    friends: ['Kim', 'Sam'],
+    isActive: true,
+    balance: 3821,
+    skills: ['figma', 'html', 'css', 'testing', 'git'],
+    gender: 'female',
+    age: 34,
+  },
+  {
+    name: 'Max',
+    email: 'max@xinware.com',
+    eyeColor: 'green',
+    friends: ['Leo', 'Iris', 'Kim'],
+    isActive: false,
+    balance: 3793,
+    skills: ['sql', 'node', 'git', 'html', 'javascript'],
+    gender: 'male',
+    age: 24,
+  },
+  {
+    name: 'Iris',
+    email: 'iris@omatom.com',
+    eyeColor: 'green',
+    friends: ['Nora', 'Leo'],
+    isActive: true,
+    balance: 2278,
+    skills: ['react', 'javascript', 'css'],
+    gender: 'female',
+    age: 21,
+  },
+  {
+    name: 'Sam',
+    email: 'sam@nurali.com',
+    eyeColor: 'blue',
+    friends: ['Alex', 'Max'],
+    isActive: true,
+    balance: 3951,
+    skills: ['git', 'node', 'sql'],
+    gender: 'male',
+    age: 27,
+  },
+  {
+    name: 'Leo',
+    email: 'leo@furnigeer.com',
+    eyeColor: 'brown',
+    friends: ['Iris', 'Kim'],
+    isActive: false,
+    balance: 1498,
+    skills: ['testing', 'html', 'figma'],
+    gender: 'male',
+    age: 38,
+  },
+  {
+    name: 'Kim',
+    email: 'kim@kog.com',
+    eyeColor: 'brown',
+    friends: ['Nora', 'Max'],
+    isActive: true,
+    balance: 2764,
+    skills: ['javascript', 'react', 'node'],
+    gender: 'female',
+    age: 39,
+  },
+];
+
+const getUsersWithEyeColor = (users, color) => {
+  return users.filter(user => user.eyeColor === color);
+};
+
+console.log(getUsersWithEyeColor(allUsers, 'blue'));
+// Масив із трьох користувачів: Alex, Nora, Sam
+
+console.log(getUsersWithEyeColor(allUsers, 'green'));
+// Масив із двох користувачів: Max, Iris
+
+console.log(getUsersWithEyeColor(allUsers, 'red'));
+// []
+*/
+
+//! ==== МЕТОД find() ====
+const users = [
+  { name: 'Anna', age: 17 },
+  { name: 'Alex', age: 25 },
+  { name: 'Maria', age: 19 },
+  { name: 'John', age: 32 },
+];
+
+/*
+ * Напиши функцию: findAdult(users) которая с помощью метода find() должна найти и вернуть первого пользователя,
+ * которому исполнилось 18 лет или больше.
+ *----------
+ * Используй именно find().
+ * Не используй for, while или filter().
+ * Функция должна принимать массив users.
+ * Функция должна вернуть найденный объект.
+ * Вызови функцию через console.log(), чтобы увидеть результат.
+
+function findAdult(users) {
+  return users.find(user => user.age >= 18);
+}
+
+console.log(findAdult(users)); // { name: "Alex", age: 25 }
+*/
