@@ -759,6 +759,7 @@ console.log(getUsersWithEyeColor(allUsers, 'red'));
 */
 
 //! ==== МЕТОД find() ====
+/*
 const users = [
   { name: 'Anna', age: 17 },
   { name: 'Alex', age: 25 },
@@ -781,4 +782,392 @@ function findAdult(users) {
 }
 
 console.log(findAdult(users)); // { name: "Alex", age: 25 }
+*/
+
+//! *** ЗАДАЧА: "ПОИСК ПО ПОЧТЕ"
+/*
+ * Функція getUserWithEmail(users, email) повертає обʼєкт користувача,
+ * пошта якого збігається зі значенням параметра email.
+ *   users — масив обʼєктів користувачів.
+ *   email — поштова адреса (рядок).
+ * 1. Оголоси getUserWithEmail як стрілочну функцію.
+ * 2. Перебери масив users методом find().
+ * 3. У колбеку поверни true для того користувача, у якого властивість
+ *    email дорівнює параметру email.
+ * 4. Поверни результат find().
+
+const allUsers = [
+  {
+    name: 'Alex',
+    email: 'alex@indexia.com',
+    eyeColor: 'blue',
+    friends: ['Sam'],
+    isActive: false,
+    balance: 2811,
+    skills: ['html', 'css'],
+    gender: 'male',
+    age: 37,
+  },
+  {
+    name: 'Nora',
+    email: 'nora@tubesys.com',
+    eyeColor: 'blue',
+    friends: ['Kim', 'Sam'],
+    isActive: true,
+    balance: 3821,
+    skills: ['figma', 'html', 'css', 'testing', 'git'],
+    gender: 'female',
+    age: 34,
+  },
+  {
+    name: 'Max',
+    email: 'max@xinware.com',
+    eyeColor: 'green',
+    friends: ['Leo', 'Iris', 'Kim'],
+    isActive: false,
+    balance: 3793,
+    skills: ['sql', 'node', 'git', 'html', 'javascript'],
+    gender: 'male',
+    age: 24,
+  },
+  {
+    name: 'Iris',
+    email: 'iris@omatom.com',
+    eyeColor: 'green',
+    friends: ['Nora', 'Leo'],
+    isActive: true,
+    balance: 2278,
+    skills: ['react', 'javascript', 'css'],
+    gender: 'female',
+    age: 21,
+  },
+  {
+    name: 'Sam',
+    email: 'sam@nurali.com',
+    eyeColor: 'blue',
+    friends: ['Alex', 'Max'],
+    isActive: true,
+    balance: 3951,
+    skills: ['git', 'node', 'sql'],
+    gender: 'male',
+    age: 27,
+  },
+  {
+    name: 'Leo',
+    email: 'leo@furnigeer.com',
+    eyeColor: 'brown',
+    friends: ['Iris', 'Kim'],
+    isActive: false,
+    balance: 1498,
+    skills: ['testing', 'html', 'figma'],
+    gender: 'male',
+    age: 38,
+  },
+  {
+    name: 'Kim',
+    email: 'kim@kog.com',
+    eyeColor: 'brown',
+    friends: ['Nora', 'Max'],
+    isActive: true,
+    balance: 2764,
+    skills: ['javascript', 'react', 'node'],
+    gender: 'female',
+    age: 39,
+  },
+];
+
+const getUserWithEmail = (users, email) => {
+  return users.find(user => user.email === email);
+};
+
+console.log(getUserWithEmail(allUsers, 'kim@kog.com'));
+// Обʼєкт користувача Kim
+
+console.log(getUserWithEmail(allUsers, 'iris@omatom.com'));
+// Обʼєкт користувача Iris
+
+console.log(getUserWithEmail(allUsers, 'unknown@mail.com'));
+// undefined
+*/
+
+//! ==== МЕТОД reduce() ====
+//! ** reduce() проходит по элементам массива и постепенно накапливает один общий результат **
+/*
+const products = [
+  { name: 'Apple', price: 50 },
+  { name: 'Banana', price: 30 },
+  { name: 'Orange', price: 40 },
+];
+
+const total = products.reduce((sum, product) => {
+  return sum + product.price;
+}, 0); //! 0 - (initial value) начальное значение аккумулятора (acc). «Начни считать с нуля».
+
+console.log(total); // 120
+*/
+
+//! *** ЗАДАЧА ***
+/*
+ * Функція calculateTotalBalance(users) повертає суму коштів усіх користувачів.
+ *   users — масив обʼєктів користувачів.
+ * 1. Оголоси calculateTotalBalance як стрілочну функцію.
+ * 2. Перебери масив users методом reduce() з початковим значенням 0.
+ * 3. У колбеку додай до накопиченого значення властивість balance
+ *    поточного користувача.
+ * 4. Поверни результат reduce().
+
+const allUsers = [
+  {
+    name: 'Alex',
+    email: 'alex@indexia.com',
+    eyeColor: 'blue',
+    friends: ['Sam'],
+    isActive: false,
+    balance: 2811,
+    skills: ['html', 'css'],
+    gender: 'male',
+    age: 37,
+  },
+  {
+    name: 'Nora',
+    email: 'nora@tubesys.com',
+    eyeColor: 'blue',
+    friends: ['Kim', 'Sam'],
+    isActive: true,
+    balance: 3821,
+    skills: ['figma', 'html', 'css', 'testing', 'git'],
+    gender: 'female',
+    age: 34,
+  },
+  {
+    name: 'Max',
+    email: 'max@xinware.com',
+    eyeColor: 'green',
+    friends: ['Leo', 'Iris', 'Kim'],
+    isActive: false,
+    balance: 3793,
+    skills: ['sql', 'node', 'git', 'html', 'javascript'],
+    gender: 'male',
+    age: 24,
+  },
+  {
+    name: 'Iris',
+    email: 'iris@omatom.com',
+    eyeColor: 'green',
+    friends: ['Nora', 'Leo'],
+    isActive: true,
+    balance: 2278,
+    skills: ['react', 'javascript', 'css'],
+    gender: 'female',
+    age: 21,
+  },
+  {
+    name: 'Sam',
+    email: 'sam@nurali.com',
+    eyeColor: 'blue',
+    friends: ['Alex', 'Max'],
+    isActive: true,
+    balance: 3951,
+    skills: ['git', 'node', 'sql'],
+    gender: 'male',
+    age: 27,
+  },
+  {
+    name: 'Leo',
+    email: 'leo@furnigeer.com',
+    eyeColor: 'brown',
+    friends: ['Iris', 'Kim'],
+    isActive: false,
+    balance: 1498,
+    skills: ['testing', 'html', 'figma'],
+    gender: 'male',
+    age: 38,
+  },
+  {
+    name: 'Kim',
+    email: 'kim@kog.com',
+    eyeColor: 'brown',
+    friends: ['Nora', 'Max'],
+    isActive: true,
+    balance: 2764,
+    skills: ['javascript', 'react', 'node'],
+    gender: 'female',
+    age: 39,
+  },
+];
+
+const calculateTotalBalance = users => {
+  return users.reduce((total, user) => total + user.balance, 0);
+};
+//! total - аккумулятор
+//! 0 - начальное значение
+
+console.log(calculateTotalBalance(allUsers)); // 20916
+*/
+
+//! ==== МЕТОД toSorted() ====
+/*
+const numbers = [3, 1, 4, 2];
+
+const sortedNumbers = numbers.toSorted();
+
+console.log(sortedNumbers); // [1, 2, 3, 4]
+console.log(numbers); // [3, 1, 4, 2]
+*/
+
+//! *** ПРИМЕР С ЧИСЛАМИ ***
+/*
+const prices = [45, 120, 60, 8, 75];
+
+console.log(prices.toSorted((a, b) => a - b)); //! Числа сорт. от меньшего к большему // a - b выведет [8, 45, 60, 75, 120]
+
+console.log(prices.toSorted((a, b) => b - a)); //! Числа сорт. от большего к меньшему // b - a выведет [120, 75, 60, 45, 8]
+*/
+
+//! *** ЗАДАЧА ***
+/*
+ * Онлайн-бібліотека показує книги за роком видання — від старіших
+ * до новіших або навпаки.
+ * 1. Оголоси змінну ascendingReleaseYears і поклади в неї копію масиву
+ *    releaseYears, відсортовану за зростанням. Використай метод toSorted()
+ *    з функцією порівняння.
+ * 2. Оголоси змінну descendingReleaseYears і поклади в неї копію масиву
+ *    releaseYears, відсортовану за спаданням.
+
+const releaseYears = [2016, 1967, 2008, 1984, 1973, 2012, 1997];
+
+const ascendingReleaseYears = releaseYears.toSorted((a, b) => a - b);
+
+console.log(ascendingReleaseYears);
+// [1967, 1973, 1984, 1997, 2008, 2012, 2016]
+
+const descendingReleaseYears = releaseYears.toSorted((a, b) => b - a);
+
+console.log(descendingReleaseYears);
+// [2016, 2012, 2008, 1997, 1984, 1973, 1967]
+*/
+
+//! *** ПРИМЕР: СОРТИРОВКА ОБЪЕКТОВ ***
+/*
+const menu = [
+  { name: 'Latte', price: 75 },
+  { name: 'Espresso', price: 45 },
+  { name: 'Mocha', price: 90 },
+  { name: 'Cappuccino', price: 60 },
+];
+
+const menuByPrice = menu.toSorted((firstDrink, secondDrink) => {
+  return firstDrink.price - secondDrink.price;
+});
+
+console.log(menuByPrice);
+// [
+//   { name: 'Espresso', price: 45 },
+//   { name: 'Cappuccino', price: 60 },
+//   { name: 'Latte', price: 75 },
+//   { name: 'Mocha', price: 90 }
+// ]
+*/
+
+//! *** ПРАКТИКА ***
+/*
+ * Онлайн-бібліотека показує список книг у різному порядку.
+ * Масив books містить обʼєкти з властивостями title, author і rating.
+ * 1. Оголоси змінну sortedByAscendingRating і поклади в неї копію масиву
+ *    books, відсортовану за зростанням рейтингу.
+ * 2. Оголоси змінну sortedByDescendingRating і поклади в неї копію масиву
+ *    books, відсортовану за спаданням рейтингу.
+ * Обидва рази використай метод toSorted() з функцією порівняння.
+
+const books = [
+  { title: 'Silent Harbor', author: 'Alex', rating: 8.38 },
+  { title: 'Paper Moons', author: 'Nora', rating: 8.51 },
+  { title: 'The Glass Garden', author: 'Leo', rating: 7.75 },
+  { title: 'North of Winter', author: 'Kim', rating: 7.94 },
+  { title: 'Ashes and Salt', author: 'Alex', rating: 8.67 },
+];
+
+const sortedByAscendingRating = books.toSorted(
+  (firstBook, secondBook) => firstBook.rating - secondBook.rating
+);
+
+console.log(sortedByAscendingRating);
+// [
+//   { title: 'The Glass Garden', author: 'Leo', rating: 7.75 },
+//   { title: 'North of Winter', author: 'Kim', rating: 7.94 },
+//   { title: 'Silent Harbor', author: 'Alex', rating: 8.38 },
+//   { title: 'Paper Moons', author: 'Nora', rating: 8.51 },
+//   { title: 'Ashes and Salt', author: 'Alex', rating: 8.67 }
+// ]
+
+const sortedByDescendingRating = books.toSorted(
+  (firstBook, secondBook) => secondBook.rating - firstBook.rating
+);
+
+console.log(sortedByDescendingRating);
+// [
+//   { title: 'Ashes and Salt', author: 'Alex', rating: 8.67 },
+//   { title: 'Paper Moons', author: 'Nora', rating: 8.51 },
+//   { title: 'Silent Harbor', author: 'Alex', rating: 8.38 },
+//   { title: 'North of Winter', author: 'Kim', rating: 7.94 },
+//   { title: 'The Glass Garden', author: 'Leo', rating: 7.75 }
+// ]
+*/
+
+//! ==== ЦЕПОЧКИ МЕТОДОВ ====
+/*
+ * Задача: отфильтровать массив и оставить только элементы, которые соответствуют условию filter().
+ * Задача: преобразовать каждый элемент полученного массива .map().
+
+const numbers = [5, 12, 8, 20, 3];
+
+const result = numbers
+  .filter(number => number > 5) //! оставляет числа > 5
+  .map(number => number * 2); //! умножает каждое число на 2
+
+console.log(result); // [24, 16, 40]
+*/
+
+//! *** ПРИМЕР ***
+/*
+const menu = [
+  { name: 'Latte', price: 75 },
+  { name: 'Espresso', price: 45 },
+  { name: 'Mocha', price: 90 },
+  { name: 'Cappuccino', price: 60 },
+];
+
+// const menuByPrice = menu.toSorted((a, b) => a.price - b.price); //! toSorted вызывает массив, поэтому .map можно вызывать на результате его работы
+// const names = menuByPrice.map(item => item.name);
+
+const names = menu.toSorted((a, b) => a.price - b.price).map(item => item.name);
+
+console.log(names);
+*/
+
+//! *** ПРАКТИКА ***
+/*
+ * Онлайн-бібліотека показує назви найкраще оцінених книг.
+ * Масив books містить обʼєкти з властивостями title, author і rating.
+ * 1. Оголоси змінну topRatedTitles і поклади в неї масив назв книг,
+ *    рейтинг яких не менший за minRating.
+ * 2. Зроби це одним ланцюжком з методів filter() і map().
+ *    Проміжних змінних бути не повинно.
+
+const books = [
+  { title: 'Silent Harbor', author: 'Alex', rating: 8.38 },
+  { title: 'Paper Moons', author: 'Nora', rating: 8.51 },
+  { title: 'The Glass Garden', author: 'Leo', rating: 7.75 },
+  { title: 'North of Winter', author: 'Kim', rating: 7.94 },
+  { title: 'Ashes and Salt', author: 'Alex', rating: 8.67 },
+];
+
+const minRating = 8;
+
+const topRatedTitles = books
+  .filter(book => book.rating >= minRating)
+  .map(book => book.title);
+
+console.log(topRatedTitles);
+// ['Silent Harbor', 'Paper Moons', 'Ashes and Salt']
 */
