@@ -1171,3 +1171,119 @@ const topRatedTitles = books
 console.log(topRatedTitles);
 // ['Silent Harbor', 'Paper Moons', 'Ashes and Salt']
 */
+
+//! *** ПРАКТИКА ***
+/*
+ * Функція getActiveNamesByBalance(users) повертає масив імен
+ * активних користувачів, відсортованих за балансом від найбільшого.
+ *   users — масив обʼєктів користувачів.
+ * 1. Оголоси getActiveNamesByBalance як стрілочну функцію.
+ * 2. Одним ланцюжком: відбери користувачів, у яких isActive дорівнює true,
+ *    відсортуй їх за balance від найбільшого до найменшого й дістань їхні імена.
+ * 3. Використай методи filter(), toSorted() і map().
+ *    Проміжних змінних бути не повинно.
+
+const allUsers = [
+  {
+    name: 'Alex',
+    email: 'alex@indexia.com',
+    eyeColor: 'blue',
+    friends: ['Sam'],
+    isActive: false,
+    balance: 2811,
+    skills: ['html', 'css'],
+    gender: 'male',
+    age: 37,
+  },
+  {
+    name: 'Nora',
+    email: 'nora@tubesys.com',
+    eyeColor: 'blue',
+    friends: ['Kim', 'Sam'],
+    isActive: true,
+    balance: 3821,
+    skills: ['figma', 'html', 'css', 'testing', 'git'],
+    gender: 'female',
+    age: 34,
+  },
+  {
+    name: 'Max',
+    email: 'max@xinware.com',
+    eyeColor: 'green',
+    friends: ['Leo', 'Iris', 'Kim'],
+    isActive: false,
+    balance: 3793,
+    skills: ['sql', 'node', 'git', 'html', 'javascript'],
+    gender: 'male',
+    age: 24,
+  },
+  {
+    name: 'Iris',
+    email: 'iris@omatom.com',
+    eyeColor: 'green',
+    friends: ['Nora', 'Leo'],
+    isActive: true,
+    balance: 2278,
+    skills: ['react', 'javascript', 'css'],
+    gender: 'female',
+    age: 21,
+  },
+  {
+    name: 'Sam',
+    email: 'sam@nurali.com',
+    eyeColor: 'blue',
+    friends: ['Alex', 'Max'],
+    isActive: true,
+    balance: 3951,
+    skills: ['git', 'node', 'sql'],
+    gender: 'male',
+    age: 27,
+  },
+  {
+    name: 'Leo',
+    email: 'leo@furnigeer.com',
+    eyeColor: 'brown',
+    friends: ['Iris', 'Kim'],
+    isActive: false,
+    balance: 1498,
+    skills: ['testing', 'html', 'figma'],
+    gender: 'male',
+    age: 38,
+  },
+  {
+    name: 'Kim',
+    email: 'kim@kog.com',
+    eyeColor: 'brown',
+    friends: ['Nora', 'Max'],
+    isActive: true,
+    balance: 2764,
+    skills: ['javascript', 'react', 'node'],
+    gender: 'female',
+    age: 39,
+  },
+];
+
+const getActiveNamesByBalance = users => {
+  console.log(users);
+
+  const activeUsers = users.filter(user => user.isActive);
+
+  const sortedUsers = activeUsers.toSorted(
+    (userA, userB) => userB.balance - userA.balance
+  );
+
+  const names = sortedUsers.map(user => user.name);
+  console.log(names);
+};
+//! Этот массив можно написать сокращено
+
+// const getActiveNamesByBalance = users => {
+//   return users
+//     .filter(user => user.isActive)
+//     .toSorted((userA, userB) => userB.balance - userA.balance)
+//     .map(user => user.name);
+// };
+
+console.log(getActiveNamesByBalance(allUsers));
+// ['Sam', 'Nora', 'Kim', 'Iris']
+*/
