@@ -150,3 +150,113 @@ const book1 = new Book(); //! book1 — переменная, в которой 
 const book2 = new Book(); //! book2 — переменная, в которой хранится 2й экземпляр класса Book. new Book() — создаёт новый экземпляр класса.
 */
 //! book1 и book2 — два разных объекта, хотя созданы по одному классу.
+
+//! *** ПРАКТИКА 2 ***
+/*
+ * У SmileCare кожен пацієнт — окремий обʼєкт.
+ * Поки що опишемо саму сутність, без даних.
+ *
+ * 1. Оголоси клас Patient з порожнім тілом.
+ * 2. Створи два його екземпляри: firstPatient і secondPatient.
+ * 3. Виведи обидва екземпляри в консоль.
+ * 4. Виведи в консоль результат порівняння firstPatient === secondPatient.
+
+class Patient {}
+
+const firstPatient = new Patient();
+const secondPatient = new Patient();
+
+console.log(firstPatient, secondPatient);
+
+console.log(firstPatient === secondPatient);
+*/
+
+//! ===== КОНСТРУКТОР КЛАССА =====
+/*
+class Book { //! Создаем новый тип объектов Book. Внутри {} находится описание того, какими будут объекты, созданные из этого класса
+  constructor(title, author) { //! constructor — это специальный метод класса, который вызывается при создании нового объекта через new.
+    this.title = title;
+    this.author = author;
+  } //! title и author — это параметры.
+}
+
+const book1 = new Book('Точка Обмана', 'Дэн Браун'); //! Создаём новый объект Book и запускаем его constructor с этими значениями
+const book2 = new Book('Парься меньше, живи больше', 'Гэри Бишоп');
+const book3 = new Book('Империя Ангелов', 'Бернар Вербер'); //! Во время создания book1: this.title = title; превращается по смыслу в: book1.title = 'Точка Обмана';
+const book4 = new Book('Парься меньше, живи больше', 'Гэри Бишоп'); //! book2 и book4 одинаковые данные, но это разные объекты
+
+console.log(book1); // Book {title: 'Точка Обмана', author: 'Дэн Браун'}
+console.log(book2); // Book {title: 'Парься меньше, живи больше', author: 'Гэри Бишоп'}
+console.log(book3); // Book {title: 'Империя Ангелов', author: 'Бернар Вербер'}
+console.log(book4); // Book {title: 'Парься меньше, живи больше', author: 'Гэри Бишоп'}
+*/
+
+//! *** ПРИМЕР ***
+/*
+ * Клас Patient з минулого уроку створює порожні обʼєкти. Дамо їм дані.
+ *
+ * 1. Додай у клас конструктор з двома параметрами: name і visitsCount.
+ * 2. У конструкторі запиши обидва значення у властивості нового екземпляра.
+ * 3. Онови створення пацієнтів: firstPatient — 'Alex' з 2 візитами,
+ *    secondPatient — 'Nora' з 5 візитами.
+
+class Patient {
+  constructor(name, visitsCount) {
+    this.name = name;
+    this.visitsCount = visitsCount;
+  }
+}
+
+const firstPatient = new Patient('Alex', 2);
+const secondPatient = new Patient('Nora', 5);
+
+console.log(firstPatient);
+console.log(secondPatient);
+*/
+
+//! ===== ПАРАМЕТРЫ ОБЪЕКТА =====
+/*
+class Book {
+  constructor(title, author, year) {
+    this.title = title;
+    this.author = author;
+    this.year = year;
+  }
+}
+
+const book1 = new Book('Точка Обмана', 'Дэн Браун', 2001);
+const book2 = new Book('Парься меньше, живи больше', 'Гэри Бишоп', 2016);
+const book3 = new Book('Империя Ангелов', 'Бернар Вербер', 2000);
+const book4 = new Book('Гэри Бишоп', 2016, 'Парься меньше, живи больше'); //! Ошибка в последовательности параметров. Которую интерпретатор не выдаст за ошибку
+
+console.log(book1);
+console.log(book2);
+console.log(book3);
+console.log(book4);
+*/
+
+//! Чтобы избежать ошибок в значениях (отдельными аргументами), можно передать один объект со свойствами
+/*
+class Book {
+  constructor(params) { //! *1 переменная params указывает именно на этот объект.
+    this.title = params.title; //! Возьми свойство title из объекта params и запиши его в свойство title создаваемого объекта.
+    this.author = params.author;
+    this.year = params.year;
+  }
+}
+
+const book1 = new Book({ //! Конструктор получает один аргумент — объект *1
+  title: 'Точка Обмана',
+  author: 'Дэн Браун',
+  year: 2001,
+});
+
+const book2 = new Book({
+  author: 'Гэри Бишоп',
+  year: 2016,
+  title: 'Парься меньше, живи больше',
+}); //! Здесь порядок отличается от порядка свойств в constructor. JavaScript смотрит на имя свойства, а не значения! Поэтому он найдёт нужное значение независимо от порядка.
+ 
+console.log(book1); // Book {title: 'Точка Обмана', author: 'Дэн Браун', year: 2001}
+console.log(book2); // Book {title: 'Парься меньше, живи больше', author: 'Гэри Бишоп', year: 2016}
+*/
