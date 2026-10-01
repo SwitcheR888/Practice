@@ -260,3 +260,153 @@ const book2 = new Book({
 console.log(book1); // Book {title: 'Точка Обмана', author: 'Дэн Браун', year: 2001}
 console.log(book2); // Book {title: 'Парься меньше, живи больше', author: 'Гэри Бишоп', year: 2016}
 */
+
+//! *** ПРАКТИКА ***
+/*
+ * Пацієнту потрібна ще й вартість лікування. Трьох аргументів поспіль
+ * уже забагато: у виклику не видно, що є що, і переплутати їх легко.
+ *
+ * 1. Переведи конструктор на один параметр params.
+ * 2. Онови створення пацієнтів — передай у виклик обʼєкт параметрів:
+ *    firstPatient — patient 'Alex', visits 2, cost 4000;
+ *    secondPatient — patient 'Nora', visits 5, cost 6000.
+ * 3. У конструкторі запиши значення з params у три властивості екземпляра:
+ *    params.patient → this.name,
+ *    params.visits → this.visitsCount,
+ *    params.cost → this.treatmentCost.
+ * 4. Виведи обидвох пацієнтів в консоль.
+
+class Patient {
+  constructor(params) {
+    ((this.name = params.patient),
+      (this.visitsCount = params.visits),
+      (this.treatmentCost = params.cost));
+  }
+}
+
+const firstPatient = new Patient({
+  patient: 'Alex',
+  visits: 2,
+  cost: 4000,
+});
+
+const secondPatient = new Patient({
+  patient: 'Nora',
+  visits: 5,
+  cost: 6000,
+});
+
+console.log(firstPatient);
+console.log(secondPatient);
+*/
+
+//! ===== МЕТОДЫ КЛАССА =====
+/*
+class Book {
+  constructor(params) { //! берёт значение title из объекта params и записывает его в свойство title создаваемого объекта.
+    this.title = params.title;
+    this.author = params.author;
+    this.year = params.year;
+  }
+
+  getInfo() { //! getInfo() — без параметров.
+    return `${this.title} - ${this.author}, year ${this.year}`; //! Он возвращает строку собранную из свойств текущего экземпляра. И подставляет значения.
+  }
+
+  changeYear(newYear) { //! метод changeYear(newYear) принимает параметр — новое значение года. Но не возвращает значение — он изменяет состояние объекта
+    this.year = newYear;
+  }
+}
+
+const book1 = new Book({ //! через new Book({...}) передаём объект с нужными полями, а конструктор распаковывает их и сохраняет в this
+  title: 'Точка Обмана',
+  author: 'Дэн Браун',
+  year: 2001,
+});
+
+console.log(book1); //! показывает сам объект целиком (все его свойства).
+
+console.log(book1.getInfo()); //! показывает результат вызова метода getInfo() — строку с информацией о книге.
+
+book1.changeYear(2003); //! После changeYear(2003) год у объекта меняется, и второй
+
+console.log(book1.getInfo()); //! нужен, чтобы увидеть, что значение действительно изменилось.
+*/
+
+//! *** ПРАКТИКА ***
+/*
+ * Пацієнт поки що тільки зберігає дані. Навчимо його діям.
+ *
+ * 1. Додай метод getInfo(), який повертає рядок у форматі
+ *    "імʼя: N visits, M UAH" — наприклад "Alex: 2 visits, 4000 UAH".
+ * 2. Додай метод addVisit(cost), який збільшує кількість візитів на 1
+ *    і додає cost до вартості лікування.
+ * 3. Замість виведення самих пацієнтів виведи getInfo() кожного.
+ * 4. Додай firstPatient візит вартістю 1500 і знову виведи його getInfo().
+
+class Patient {
+  constructor(params) {
+    this.name = params.patient;
+    this.visitsCount = params.visits;
+    this.treatmentCost = params.cost;
+  }
+  getInfo() {
+    return `${this.name}: ${this.visitsCount} visits, ${this.treatmentCost} UAH`;
+  }
+  addVisit(cost) {
+    this.visitsCount += 1;
+    this.treatmentCost += cost;
+  }
+}
+
+const firstPatient = new Patient({
+  patient: 'Alex',
+  visits: 2,
+  cost: 4000,
+});
+
+const secondPatient = new Patient({
+  patient: 'Nora',
+  visits: 5,
+  cost: 6000,
+});
+
+console.log(firstPatient.getInfo());
+
+console.log(secondPatient.getInfo());
+
+firstPatient.addVisit(1500);
+console.log(firstPatient.getInfo());
+*/
+
+//! ===== ПРОТОТИП ЭКЗЕМПЛЯРА =====
+/*
+class Book {
+  constructor(params) { //! особая функция, вызывается каждый раз при создании нового экземпляра через new Book(...).
+    this.title = params.title;
+    this.author = params.author;
+    this.year = params.year;
+  } //! Конструктор создаёт личные данные (title, author, year) внутри самого экземпляра.
+
+  getInfo() {
+    return `${this.title} — ${this.author}, year ${this.year}`;
+  }
+
+  changeYear(newYear) {
+    this.year = newYear;
+  } //! getInfo() и changeYear() - не копируются в каждый созданный объект. Они находятся в Book.prototype
+}
+
+const book1 = new Book({ //! Создаётся новый пустой объект. Вызывается constructor, который записывает title, author, year прямо в book1.
+  title: 'Точка Обмана',
+  author: 'Дэн Браун',
+  year: 2001,
+});
+
+console.log(book1); // Book { title: 'Точка Обмана', author: 'Дэн Браун', year: 2001 } //! Выводит только то, что лежит непосредственно в book1 — title, author, year.
+{//! Методы не показываются, потому что они не внутри book1, а в Book.prototype.}
+console.log(book1.hasOwnProperty('getInfo')); // false //! возвращает false, потому что getInfo() не является собственным свойством экземпляра book1.
+{//! JS ищет getInfo сначала в book1 → не находит → поднимается по [[Prototype]] → находит в Book.prototype → вызывает его, подставляя this = book1.}
+*/
+
+//! ===== ЧАСТНЫЕ СВОЙСТВА =====
