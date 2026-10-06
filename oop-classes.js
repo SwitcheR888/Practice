@@ -409,4 +409,245 @@ console.log(book1.hasOwnProperty('getInfo')); // false //! возвращает 
 {//! JS ищет getInfo сначала в book1 → не находит → поднимается по [[Prototype]] → находит в Book.prototype → вызывает его, подставляя this = book1.}
 */
 
-//! ===== ЧАСТНЫЕ СВОЙСТВА =====
+//! ===== ПРИВАТНЫЕ СВОЙСТВА =====
+/*
+class Book {
+  #year; //! Это объявление приватного свойства. Оно обязательно должно находиться непосредственно в теле класса.
+
+  constructor(params) {
+    this.title = params.title;
+    this.author = params.author;
+    this.#year = params.year;
+  }
+
+  getInfo() { //! При этом getInfo() всё ещё может читать приватное свойство, потому что он находится внутри самого класса.
+    return `${this.title} — ${this.author}, year ${this.#year}`;
+  }
+
+  changeYear(newYear) {
+    this.#year = newYear;
+  }
+}
+
+const book1 = new Book({
+  title: 'Точка Обмана',
+  author: 'Дэн Браун',
+  year: 2001,
+});
+
+console.log(book1); // Book {title: 'Точка Обмана', author: 'Дэн Браун', #year: 2001}
+*/
+
+//! *** ПРАКТИКА ***
+/*
+ * Вартість лікування можна переписати ззовні будь-яким значенням.
+ * У SmileCare так не можна: вартість лише читають, а змінюють
+ * тільки додаванням нової процедури. Сховаємо її від зовнішнього коду.
+ *
+ * 1. Зроби властивість treatmentCost приватною: #treatmentCost.
+ * 2. Додай метод getCost(), який повертає вартість лікування.
+ * 3. Додай метод addCharge(amount), який додає amount до вартості.
+ * 4. Виведи вартість firstPatient.
+ * 5. Додай firstPatient нову процедуру на 1500 і знову виведи вартість.
+ * 6. Наприкінці виведи вартість secondPatient.
+
+class Patient {
+  #treatmentCost;
+  constructor(params) {
+    this.name = params.patient;
+    this.visitsCount = params.visits;
+    this.#treatmentCost = params.cost;
+  }
+  getCost() {
+    return this.#treatmentCost;
+  }
+  addCharge(amount) {
+    this.#treatmentCost += amount;
+  }
+}
+
+const firstPatient = new Patient({
+  patient: 'Alex',
+  visits: 2,
+  cost: 4000,
+});
+
+const secondPatient = new Patient({
+  patient: 'Nora',
+  visits: 5,
+  cost: 6000,
+});
+
+console.log(firstPatient);
+
+firstPatient.addCharge(1500);
+console.log(firstPatient.getCost());
+
+console.log(secondPatient);
+console.log(secondPatient.getCost());
+*/
+
+//! ===== ПРИВАТНЫЕ МЕТОДЫ =====
+/*
+class Employee {
+  #salary;
+
+  constructor(params) {
+    this.name = params.name;
+    this.experience = params.experience;
+    this.#salary = params.salary;
+  }
+
+  #calculateBonus() {
+    return this.#salary * 0.1 * this.experience;
+  }
+
+  getPayslip() {
+    return this.#salary + this.#calculateBonus();
+  }
+}
+
+const firstEmployee = new Employee({
+  name: 'Alex',
+  experience: 5,
+  salary: 30000,
+});
+
+console.log(firstEmployee.getPayslip()); // 45000
+
+const secondEmployee = new Employee({
+  name: 'Nora',
+  experience: 2,
+  salary: 28000,
+});
+
+console.log(secondEmployee.getPayslip()); // 33600
+*/
+
+//! *** ПРАКТИКА ***
+/*
+ * У SmileCare діє знижка за лояльність: чим більше візитів,
+ * тим більша знижка на лікування. Саме правило знижки —
+ * внутрішня політика клініки, пацієнту його знати не треба:
+ * він бачить лише кінцеву вартість.
+ *
+ * 1. Додай приватний метод #getLoyaltyDiscount(), який повертає знижку
+ *    за кількістю візитів: 5 або більше — 0.2; 3 або більше — 0.1;
+ *    інакше — 0.
+ * 2. Додай публічний метод getFinalCost(), який повертає вартість
+ *    лікування за відрахуванням знижки від #getLoyaltyDiscount().
+ * 3. Виведи кінцеву вартість firstPatient (2 візити, знижки немає).
+ * 4. Виведи кінцеву вартість secondPatient (5 візитів, знижка діє).
+
+class Patient {
+  #treatmentCost;
+
+  constructor(params) {
+    this.name = params.patient;
+    this.visitsCount = params.visits;
+    this.#treatmentCost = params.cost;
+  }
+
+  #getLoyaltyDiscount() {
+    if (this.visitsCount >= 5) {
+      return 0.2;
+    }
+    if (this.visitsCount >= 3) {
+      return 0.1;
+    }
+    return 0;
+  }
+
+  getFinalCost() {
+    const discount = this.#getLoyaltyDiscount();
+    return this.#treatmentCost - this.#treatmentCost * discount;
+  }
+}
+
+const firstPatient = new Patient({
+  patient: 'Alex',
+  visits: 2,
+  cost: 4000,
+});
+
+const secondPatient = new Patient({
+  patient: 'Nora',
+  visits: 5,
+  cost: 4000,
+});
+
+console.log(firstPatient.getFinalCost()); // 4000
+console.log(secondPatient.getFinalCost()); // 3200
+*/
+
+//! ===== НАСЛЕДИЕ КЛАССОВ =====
+/*
+class Employee {
+  constructor(params) {
+    this.name = params.name;
+    this.position = params.position;
+  }
+
+  getInfo() {
+    return `${this.name} — ${this.position}`;
+  }
+}
+
+class Doctor extends Employee {
+  constructor(params) {
+    super(params);
+    this.specialization = params.specialization;
+  }
+}
+const doctor = new Doctor({
+  name: 'Alex',
+  position: 'Dentist',
+});
+
+console.log(doctor.getInfo()); // Alex — Dentist
+*/
+
+//! *** ПРАКТИКА ***
+/*
+ * Електромобіль — це той самий транспорт: у нього є марка й максимальна
+ * швидкість. Але є й своє, чого немає у звичайного транспорту, — запас
+ * ходу на одному заряді.
+ *
+ * 1. Клас Vehicle уже готовий — не змінюй його.
+ * 2. Оголоси клас ElectricCar, який успадковує Vehicle через extends.
+ * 3. Додай йому конструктор: виклич super(params), а тоді запиши
+ *    у властивість batteryRange значення з params.range.
+ * 4. Додай метод getRange(), який повертає рядок у форматі
+ *    "марка: N km on a charge" — наприклад "Tesla Model 3: 500 km on a charge".
+
+class Vehicle {
+  constructor(params) {
+    this.brand = params.brand;
+    this.maxSpeed = params.speed;
+  }
+
+  getInfo() {
+    return `${this.brand}, up to ${this.maxSpeed} km/h`;
+  }
+}
+
+class ElectricCar extends Vehicle {
+  constructor(params) {
+    super(params);
+    this.batteryRange = params.range;
+  }
+
+  getRange() {
+    return `${this.brand}: ${this.batteryRange} km on a charge`;
+  }
+}
+
+const tesla = new ElectricCar({
+  brand: 'Tesla Model 3',
+  speed: 225,
+  range: 500,
+});
+
+console.log(tesla.getInfo()); // Tesla Model 3, up to 225 km/h
+console.log(tesla.getRange()); // Tesla Model 3: 500 km on a charge
+*/
