@@ -104,3 +104,51 @@ console.log(roomJs.src, roomJs.alt); //! В консоли будет вывод
 */
 
 //! *** ПРАКТИКА ***
+/*
+ * На сторінці Practice є промо-банер: зображення всередині посилання.
+ * 1. Знайди зображення за класом .promo.
+ * 2. Зміни його src на "https://i.pinimg.com/736x/30/26/43/302643c0f251db4db8fa0c7f2de8fe54.jpg" і alt на 'JavaScript cheat sheet'.
+ * 3. Знайди посилання за класом .gpt_book і зміни його href на "https://gpt-book.js.org".
+ * 4. Виведи оновлений href посилання в консоль.
+
+const promo = document.querySelector('.promo');
+promo.src =
+  'https://i.pinimg.com/736x/30/26/43/302643c0f251db4db8fa0c7f2de8fe54.jpg';
+promo.alt = 'JavaScript cheat sheet';
+
+console.log(promo.src, promo.alt);
+
+const gpt_book = document.querySelector('.gpt_book');
+gpt_book.href = 'https://gpt-book.js.org';
+console.log(gpt_book.href);
+*/
+
+//! ===== СВОЙСТВА textContent =====
+//@ textContent — это свойство DOM-элемента, которое позволяет получить / изменить весь его текстовый контент
+//! ===== ЧТЕНИЕ =====
+/*
+const g_genre = document.querySelector('.g_genre'); //! Находит элемент с классом .g_genre и сохраняет ссылку на него в переменную g_genre
+console.log(g_genre.textContent); // Genre Generation
+*/
+
+//! ===== ИЗМЕНЕНИЕ =====
+const g_genre = document.querySelector('.g_genre'); //! querySelector() находит элемент <p>. g_genre.textContent обращается к его текстовому содержимому после чего, присваивает новый текст 'JavaScript'
+g_genre.textContent = 'JavaScript'; // JavaScript
+
+//! *** ПРАКТИКА ***
+/*
+ * Штучний Інтелект "G" може генерувати декілька зображень одночасно за запитом свого студента.
+ * 1. Знайди заголовок за класом .generation-title і виведи його поточний текст у консоль.
+ * 2. Зміни текст заголовка на "JS generation".
+ * 3. Знайди лічильник за класом .g-count і зміни його текст на "5".
+
+const generationTitle = document.querySelector('.generation-title');
+console.log(generationTitle.textContent); // Loading...
+
+generationTitle.textContent = 'JS generation';
+
+const gCount = document.querySelector('.g-count');
+gCount.textContent = '5';
+
+console.log(gCount.textContent); // 5
+*/
